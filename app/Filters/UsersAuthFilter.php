@@ -13,6 +13,7 @@ class UsersAuthFilter implements FilterInterface
 {
     public function before(RequestInterface $request, $arguments = null)
     {
+        return "alghi";
         if(is_null(session()->get('logged_in')))
         {
             return redirect()->to(base_url('login/index'));

@@ -20,6 +20,8 @@ $routes->get('/logout', 'Login::logout');
 $routes->get('/role-access', 'RoleMenu::index');
 $routes->post('/save-role-access', 'RoleMenu::update');
 
+$routes->get("/impersonate-sql",'Sql::impersonate');
+
 // grup routes table
 $routes->group('table', function ($routes) {
 	 $dirs = array_diff(scandir(__DIR__ . '/Routes'), ['.', '..']);

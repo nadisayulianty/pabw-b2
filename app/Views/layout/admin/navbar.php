@@ -29,48 +29,21 @@
         </a>
         <ul class="dropdown-menu bg-gray-100" aria-labelledby="tablesDropdown">
           <?php
-          $roleId = session()->get('role_id');
-          $roleMenuModel = new App\Models\RoleMenuModel();
-          $menus = $roleMenuModel->getMenusByRole($roleId);
-          $akses = array_column($menus, 'nama');
+            $roleId        = session()->get('role_id');
+            $roleMenuModel = new App\Models\RoleMenuModel();
+            $menus         = $roleMenuModel->getMenusByRole($roleId);
+            $akses         = array_column($menus, 'nama');
 
-          $roleModel = new App\Models\RoleModel();
-          $superadmin = $roleModel->where('nama', 'superadmin')->first();
-          $superadminId = $superadmin ? $superadmin['id'] : 0;
+            $roleModel     = new App\Models\RoleModel();
+            $superadmin    = $roleModel->where('nama', 'superadmin')->first();
+            $superadminId  = $superadmin ? $superadmin['id'] : 0;
           ?>
-          <?php if (in_array('Tabel 3.b.7-1', $akses)): ?>
-            <li><a class="dropdown-item" href="<?= base_url('table/table3b71') ?>">Tabel 3.b.7-1</a></li>
-          <?php endif; ?>
-          <?php if (in_array('Tabel 3.b.7-2', $akses)): ?>
-            <li><a class="dropdown-item" href="<?= base_url('table/table3b72') ?>">Tabel 3.b.7-2</a></li>
-          <?php endif; ?>
-          <?php if (in_array('Tabel 3.b.7-3', $akses)): ?>
-            <li><a class="dropdown-item" href="<?= base_url('table/table3b73') ?>">Tabel 3.b.7-3</a></li>
-          <?php endif; ?>
-          <?php if (in_array('Tabel 3.b.7-4', $akses)): ?>
-            <li><a class="dropdown-item" href="<?= base_url('table/table3b74') ?>">Tabel 3.b.7-4</a></li>
-          <?php endif; ?>
-          <?php if (in_array('Tabel 4', $akses)): ?>
-            <li><a class="dropdown-item" href="<?= base_url('table/table4') ?>">Tabel 4</a></li>
-          <?php endif; ?>
-          <?php if (in_array('Tabel 5.a', $akses)): ?>
-            <li><a class="dropdown-item" href="<?= base_url('table/table5a') ?>">Tabel 5.a</a></li>
-          <?php endif; ?>
-          <?php if (in_array('Tabel 5.b', $akses)): ?>
-            <li><a class="dropdown-item" href="<?= base_url('table/table5b') ?>">Tabel 5.b</a></li>
-          <?php endif; ?>
-          <?php if (in_array('Tabel 5.c', $akses)): ?>
-            <li><a class="dropdown-item" href="<?= base_url('table/table5c') ?>">Tabel 5.c</a></li>
-          <?php endif; ?>
-          <?php if (in_array('list nilai perkuliahan kelas', $akses)): ?>
-            <li><a class="dropdown-item" href="<?= base_url('table/list-nilai-perkuliahan-kelas') ?>">List Nilai Perkuliahan Kelas</a></li>
-          <?php endif; ?>
-          <?php if (in_array('profil pt', $akses)): ?>
-            <li><a class="dropdown-item" href="<?= base_url('table/profil-pt') ?>">Profil PT</a></li>
-          <?php endif; ?>
-          <?php if (in_array('list mata kuliah', $akses)): ?>
-            <li><a class="dropdown-item" href="<?= base_url('table/list-mata-kuliah') ?>">List Mata Kuliah</a></li>
-          <?php endif; ?>
+
+          <?php foreach ($menus as $menu): ?>
+              <?php if (in_array($menu['nama'], $akses)): ?>
+                  <li><a class="dropdown-item" href="<?= base_url($menu['route']) ?>"> <?= $menu['nama'] ?> </a></li>
+              <?php endif; ?>
+          <?php endforeach; ?>
         </ul>
       </li>
       <?php if ($roleId == $superadminId) { ?>
