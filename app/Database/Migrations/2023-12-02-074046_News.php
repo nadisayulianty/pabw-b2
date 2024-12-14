@@ -8,7 +8,7 @@ class News extends Migration
 {
     public function up()
     {
-       // Membuat kolom/field untuk tabel news
+       	// Membuat kolom/field untuk tabel news
 		$this->forge->addField([
 			'id'          => [
 				'type'           => 'INT',
