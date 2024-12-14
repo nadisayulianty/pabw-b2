@@ -33,7 +33,7 @@
                         <h5>Tabel 5.c Integrasi Kegiatan Penelitian dalam Pembelajaran</h5>
 
 
-                        <button type="button"  class="btn bg-gradient-success btn-block mb-3" data-bs-toggle="modal" data-bs-target="#modalCreate">
+                        <button type="button" class="btn bg-gradient-success btn-block mb-3" data-bs-toggle="modal" data-bs-target="#modalCreate">
                             Tambah Aspek
                         </button>
                         <br>
@@ -41,91 +41,93 @@
                     <div class="card-body px-0 pt-0 pb-2">
                         <div class="table-responsive p-0">
                             <form action="<?= base_url('table/table5c/new') ?>" method="post" role="form text-left">
-                            <table class="table table-hover align-items-center mb-0">
-                                <thead>
-                                <tr>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder border">No</th>
-                                    <th class="text-center text-uppercase text-xxs font-weight-bolder border">Aspek</th>
-                                    <th class="text-center text-uppercase text-xxs font-weight-bolder border">Tingkat Kepuasan Mahasiswa
-                                        <table class="table table-bordered">
-                                            <tr>
-                                                <td class="text-center text-secondary text-xxs font-weight-bolder">SANGAT BAIK</td>
-                                                <td class="text-center text-secondary text-xxs font-weight-bolder">BAIK</td>
-                                                <td class="text-center text-secondary text-xxs font-weight-bolder">CUKUP</td>
-                                                <td class="text-center text-xxs font-weight-bolder">KURANG</td>
-                                            </tr>
-                                            <!-- Anda dapat menambahkan baris lain sesuai kebutuhan -->
-                                        </table>
-                                    </th>
-                                    <th class="text-center text-uppercase text-xxs font-weight-bolder border">Tindak Lanjut UPPS</th>
-                                </tr>
-                                </thead>
-                                <tbody>
+                                <table class="table table-hover align-items-center mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder border">No</th>
+                                            <th class="text-center text-uppercase text-xxs font-weight-bolder border">Aspek</th>
+                                            <th class="text-center text-uppercase text-xxs font-weight-bolder border">Tingkat Kepuasan Mahasiswa
+                                                <table class="table table-bordered">
+                                                    <tr>
+                                                        <td class="text-center text-secondary text-xxs font-weight-bolder">SANGAT BAIK</td>
+                                                        <td class="text-center text-secondary text-xxs font-weight-bolder">BAIK</td>
+                                                        <td class="text-center text-secondary text-xxs font-weight-bolder">CUKUP</td>
+                                                        <td class="text-center text-xxs font-weight-bolder">KURANG</td>
+                                                    </tr>
+                                                    <!-- Anda dapat menambahkan baris lain sesuai kebutuhan -->
+                                                </table>
+                                            </th>
+                                            <th class="text-center text-uppercase text-xxs font-weight-bolder border">Tindak Lanjut UPPS</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
 
-                                <?php $no=1; foreach($table5c as $row): ?>
+                                        <?php $no = 1;
+                                        foreach ($table5c as $row): ?>
 
-                                    <tr>
-                                    <td class="text-center">
-                                        <p class="mb-0 text-sm"><?= $no; ?></p>
-                                    </td>
-                                    <td class="text-center">
-                                        <p class="mb-0 text-sm"><?= $row['aspek'] ?></p>
-                                    </td>
-                                    <td>
-                                        <table class="table table-bordered">
                                             <tr>
-                                                <td class="text-center text-secondary text-xxs font-weight-bolder">
-                                                    <input type="radio" class="form-check-input" name="aspek<?= $no ?>_sangat_baik" value="sangat_baik" id="aspek<?= $no ?>_sangat_baik">
+                                                <td class="text-center">
+                                                    <p class="mb-0 text-sm"><?= $no; ?></p>
                                                 </td>
-                                                <td class="text-center text-secondary text-xxs font-weight-bolder">
-                                                    <input type="radio" class="form-check-input" name="aspek<?= $no ?>_baik" value="baik" id="aspek<?= $no ?>_baik">
+                                                <td class="text-center">
+                                                    <p class="mb-0 text-sm"><?= $row['aspek'] ?></p>
                                                 </td>
-                                                <td class="text-center text-secondary text-xxs font-weight-bolder">
-                                                    <input type="radio" class="form-check-input" name="aspek<?= $no ?>_cukup" value="cukup" id="aspek<?= $no ?>_cukup">
+                                                <td>
+                                                    <table class="table table-bordered">
+                                                        <tr>
+                                                            <td class="text-center text-secondary text-xxs font-weight-bolder">
+                                                                <input type="radio" class="form-check-input" name="aspek<?= $no ?>_sangat_baik" value="sangat_baik" id="aspek<?= $no ?>_sangat_baik">
+                                                            </td>
+                                                            <td class="text-center text-secondary text-xxs font-weight-bolder">
+                                                                <input type="radio" class="form-check-input" name="aspek<?= $no ?>_baik" value="baik" id="aspek<?= $no ?>_baik">
+                                                            </td>
+                                                            <td class="text-center text-secondary text-xxs font-weight-bolder">
+                                                                <input type="radio" class="form-check-input" name="aspek<?= $no ?>_cukup" value="cukup" id="aspek<?= $no ?>_cukup">
+                                                            </td>
+                                                            <td class="text-center text-xxs font-weight-bolder">
+                                                                <input type="radio" class="form-check-input" name="aspek<?= $no ?>_kurang" value="kurang" id="aspek<?= $no ?>_kurang">
+                                                            </td>
+                                                        </tr>
+                                                    </table>
                                                 </td>
-                                                <td class="text-center text-xxs font-weight-bolder">
-                                                    <input type="radio" class="form-check-input" name="aspek<?= $no ?>_kurang" value="kurang" id="aspek<?= $no ?>_kurang">
+                                                <td style="margin-left: 30%;">
+                                                    <p class="mb-0 text-sm">
+                                                        <input type="text" class="form-control" name="aspek" placeholder="TINDAK LANJUT UPPS" aria-label="aspek" aria-describedby="email-addon">
+                                                    </p>
                                                 </td>
                                             </tr>
-                                        </table>
-                                    </td>
-                                    <td style="margin-left: 30%;">
-                                        <p class="mb-0 text-sm">
-                                            <input type="text" class="form-control" name="aspek" placeholder="TINDAK LANJUT UPPS" aria-label="aspek" aria-describedby="email-addon">
-                                        </p>
-                                    </td>
-                                </tr>
-                                    <?php $no++; endforeach ?>
-                                </tbody>
-                                <tbody>
-                                <tr>
-                                    <td>
-                                        <p class="mb-0 text-sm"></p>
-                                    </td>
-                                    <td class="text-center">
-                                        <p class="mb-0 text-sm"><b>Jumlah</b></p>
-                                    </td>
-                                    <td>
-                                        <table class="table table-bordered">
-                                            <tr>
-                                                <td id="jumlah1" class="text-center text-secondary text-xxs font-weight-bolder">0</td>
-                                                <td id="jumlah2" class="text-center text-secondary text-xxs font-weight-bolder">0</td>
-                                                <td id="jumlah3" class="text-center text-secondary text-xxs font-weight-bolder">0</td>
-                                                <td id="jumlah4" class="text-center text-xxs font-weight-bolder">0</td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                    <td>
-                                        <p class="mb-0 text-sm"></p>
-                                    </td>
-                                </tr>
-                                </tbody>
-                                <tr class="justify-content-end">
-                                    <td>
-                                        <button type="submit" class="btn bg-gradient-primary btn-lg btn-rounded w-100 mt-4 mb-0">Tambah</button>
-                                    </td>
-                                </tr>
-                                </form>
+                                        <?php $no++;
+                                        endforeach ?>
+                                    </tbody>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <p class="mb-0 text-sm"></p>
+                                            </td>
+                                            <td class="text-center">
+                                                <p class="mb-0 text-sm"><b>Jumlah</b></p>
+                                            </td>
+                                            <td>
+                                                <table class="table table-bordered">
+                                                    <tr>
+                                                        <td id="jumlah1" class="text-center text-secondary text-xxs font-weight-bolder">0</td>
+                                                        <td id="jumlah2" class="text-center text-secondary text-xxs font-weight-bolder">0</td>
+                                                        <td id="jumlah3" class="text-center text-secondary text-xxs font-weight-bolder">0</td>
+                                                        <td id="jumlah4" class="text-center text-xxs font-weight-bolder">0</td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                            <td>
+                                                <p class="mb-0 text-sm"></p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tr class="justify-content-end">
+                                        <td>
+                                            <button type="submit" class="btn bg-gradient-primary btn-lg btn-rounded w-100 mt-4 mb-0">Tambah</button>
+                                        </td>
+                                    </tr>
+                            </form>
 
                             </table>
 
@@ -176,7 +178,7 @@
                                                     <p class="mb-0">Masukkan data yang anda inginkan</p>
                                                 </div>
                                                 <div class="card-body pb-3">
-                                                    <form action="<?= base_url('table/table5c/new') ?>"  method="post" role="form text-left">
+                                                    <form action="<?= base_url('table/table5c/new') ?>" method="post" role="form text-left">
 
                                                         <label>No</label>
                                                         <div class="input-group mb-3">
@@ -236,83 +238,81 @@
 
 
 <body class="g-sidenav-show bg-primary">
-<div class="min-height-300 bg-gray-100 position-absolute w-100"></div>
-<!--js jumlah-->
-<script>
-    function updateJumlah() {
-        var jumlah1 = hitungJumlah('sangat_baik');
-        var jumlah2 = hitungJumlah('baik');
-        var jumlah3 = hitungJumlah('cukup');
-        var jumlah4 = hitungJumlah('kurang');
 
-        document.getElementById('jumlah1').innerText = jumlah1;
-        document.getElementById('jumlah2').innerText = jumlah2;
-        document.getElementById('jumlah3').innerText = jumlah3;
-        document.getElementById('jumlah4').innerText = jumlah4;
-    }
+    <!--js jumlah-->
+    <script>
+        function updateJumlah() {
+            var jumlah1 = hitungJumlah('sangat_baik');
+            var jumlah2 = hitungJumlah('baik');
+            var jumlah3 = hitungJumlah('cukup');
+            var jumlah4 = hitungJumlah('kurang');
 
-    function hitungJumlah(value) {
-        var jumlah = 0;
-
-        document.querySelectorAll('input[value="' + value + '"]:checked').forEach(function(radio) {
-            jumlah++;
-        });
-
-        return jumlah;
-    }
-
-    document.querySelectorAll('input[type="radio"]').forEach(function(radio) {
-        radio.addEventListener('change', function() {
-            updateJumlah();
-        });
-    });
-</script>
-<!-- js search -->
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const searchForm = document.getElementById("searchForm");
-        const searchInput = document.getElementById("searchInput");
-        const resultMessage = document.getElementById("resultMessage");
-        const tableBody = document.querySelector(".table tbody");
-
-        function filterRows() {
-            const searchText = searchInput.value.toLowerCase();
-            let foundRows = 0;
-
-            tableBody.querySelectorAll("tr").forEach(function(row, index) {
-                const cells = row.querySelectorAll("td");
-                const kategoriText = cells[3].textContent.toLowerCase(); // Ubah sesuai dengan indeks kolom yang berisi kategori
-
-                if (kategoriText.includes(searchText)) {
-                    row.style.display = "";
-                    foundRows++;
-                } else {
-                    row.style.display = "none";
-                }
-            });
-
-            if (foundRows === 0) {
-                resultMessage.textContent = "Data tidak ditemukan";
-            } else {
-                resultMessage.textContent = "";
-            }
+            document.getElementById('jumlah1').innerText = jumlah1;
+            document.getElementById('jumlah2').innerText = jumlah2;
+            document.getElementById('jumlah3').innerText = jumlah3;
+            document.getElementById('jumlah4').innerText = jumlah4;
         }
 
-        searchForm.addEventListener("submit", function(event) {
-            event.preventDefault();
+        function hitungJumlah(value) {
+            var jumlah = 0;
+
+            document.querySelectorAll('input[value="' + value + '"]:checked').forEach(function(radio) {
+                jumlah++;
+            });
+
+            return jumlah;
+        }
+
+        document.querySelectorAll('input[type="radio"]').forEach(function(radio) {
+            radio.addEventListener('change', function() {
+                updateJumlah();
+            });
+        });
+    </script>
+    <!-- js search -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const searchForm = document.getElementById("searchForm");
+            const searchInput = document.getElementById("searchInput");
+            const resultMessage = document.getElementById("resultMessage");
+            const tableBody = document.querySelector(".table tbody");
+
+            function filterRows() {
+                const searchText = searchInput.value.toLowerCase();
+                let foundRows = 0;
+
+                tableBody.querySelectorAll("tr").forEach(function(row, index) {
+                    const cells = row.querySelectorAll("td");
+                    const kategoriText = cells[3].textContent.toLowerCase(); // Ubah sesuai dengan indeks kolom yang berisi kategori
+
+                    if (kategoriText.includes(searchText)) {
+                        row.style.display = "";
+                        foundRows++;
+                    } else {
+                        row.style.display = "none";
+                    }
+                });
+
+                if (foundRows === 0) {
+                    resultMessage.textContent = "Data tidak ditemukan";
+                } else {
+                    resultMessage.textContent = "";
+                }
+            }
+
+            searchForm.addEventListener("submit", function(event) {
+                event.preventDefault();
+                filterRows();
+            });
+
+            searchInput.addEventListener("input", filterRows);
+
             filterRows();
         });
-
-        searchInput.addEventListener("input", filterRows);
-
-        filterRows();
-    });
-</script>
+    </script>
 
 
 
 </body>
 
 <?= $this->endSection() ?>
-
-
