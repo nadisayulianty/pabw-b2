@@ -19,11 +19,10 @@ class Sql extends BaseController
         $sqlPaths = array_filter(glob( APPPATH . 'Database/SQL/' . '*'), 'is_dir');
 
         foreach ($sqlPaths as $path) {
-            $teamName = basename($path);
             $sqlFiles = glob($path . '/*.sql');
 
             foreach ($sqlFiles as $file) {
-                $sqlPath = $teamName . '/' . basename($file);
+                $sqlPath = basename($path) . '/' . basename($file);
 
                 if ($this->hasRun($sqlPath)) continue;
 
