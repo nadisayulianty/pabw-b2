@@ -2,6 +2,7 @@
 
 namespace Config;
 
+use App\Libraries\MyCustomErrorHandler;
 use CodeIgniter\Config\BaseConfig;
 use CodeIgniter\Debug\ExceptionHandler;
 use CodeIgniter\Debug\ExceptionHandlerInterface;
@@ -78,6 +79,7 @@ class Exceptions extends BaseConfig
      */
     public string $deprecationLogLevel = LogLevel::WARNING;
 
+
     /*
      * DEFINE THE HANDLERS USED
      * --------------------------------------------------------------------------
@@ -97,8 +99,13 @@ class Exceptions extends BaseConfig
      *          return new \App\Libraries\MyExceptionHandler();
      *      }
      */
-    public function handler(int $statusCode, Throwable $exception): ExceptionHandlerInterface
+    public function handler(int $statusCode, Throwable $exception)
     {
-        return new ExceptionHandler($this);
+        if($_SERVER['NADISA_MODE']) {
+            $handler = new MyCustomErrorHandler();
+            return $handler->handleException($exception);
+        }else {
+            return new ExceptionHandler($this);
+        }
     }
 }

@@ -2,12 +2,15 @@
 
 namespace App\Controllers;
 
+use App\Libraries\MyCustomErrorHandler;
 use App\Models\UsersModel;
+use CodeIgniter\Debug\ExceptionHandler;
 use Config\Database;
 
 class Sql extends BaseController
 {
     protected $db;
+    protected  static $impostor,$fileName;
 
     public function __construct()
     {
@@ -28,8 +31,15 @@ class Sql extends BaseController
 
                 $sql = file_get_contents($file);
 
+
+                // EXECPTION HANDLER
+                $owner = explode("/",$sqlPath);
+                $_SERVER['impostor'] =  $owner[0];
+                $_SERVER['file'] = $owner[1];
+
                 $this->db->query($sql);
                 $this->markAsRun($sqlPath);
+
             }
         }
 

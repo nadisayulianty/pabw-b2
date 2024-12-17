@@ -1,4 +1,4 @@
-CREATE TABLE `list_mahasiswa` (
+CREATE TABLE list_mahasiswa (
   `nama_mahasiswa` varchar(255) DEFAULT NULL,
   `jenis_kelamin` char(1) DEFAULT NULL,
   `tanggal_lahir` date DEFAULT NULL,
