@@ -9,6 +9,12 @@ class Tableperiode extends BaseController
 	{
 		$periode = new DBperiode();
         $data['periode'] = $periode->findAll();
+        $data['page'] = isset($_GET['page']) ? $_GET['page'] : 1;
+        $data['perPage'] = 5;
+        $data['total'] = $periode->countAll();
+        $data['data'] = $periode->paginate($data['perPage']);
+        $data['pager'] = $periode->pager;
+        
         
         return view('periode', $data);
     }

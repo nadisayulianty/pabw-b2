@@ -9,6 +9,7 @@ class Tablembd extends BaseController
 	{
 		$mbd = new DBmbd();
         $data['mbd'] = $mbd->findAll();
+        $data['perPage'] = 5;
         
         return view('mbd', $data);
     }
