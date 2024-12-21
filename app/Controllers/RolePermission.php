@@ -28,6 +28,7 @@ class RolePermission extends BaseController
         $roles = $roleModel->findAll();
 
         foreach ($roles as $role) {
+            $permissionModel = new RolePermissionModel();
             if (isset($request['role_'.$role['id']])) {
                 $role_permission = $request['role_'.$role['id']];
                 $data = [
@@ -36,12 +37,18 @@ class RolePermission extends BaseController
                     'can_update' => in_array('update', $role_permission),
                     'can_delete' => in_array('delete', $role_permission),
                 ];
+            } else {
+                $data = [
+                    'can_create' => false,
+                    'can_read'   => false,
+                    'can_update' => false,
+                    'can_delete' => false,
+                ];
+            }
 
-                $permissionModel = new RolePermissionModel();
-                $existingPermission = $permissionModel->where('role_id', $role['id'])->first();
-                if ($existingPermission) {
-                    $permissionModel->update($existingPermission['id'], $data);
-                }
+            $existingPermission = $permissionModel->where('role_id', $role['id'])->first();
+            if ($existingPermission) {
+                $permissionModel->update($existingPermission['id'], $data);
             }
         }
 
