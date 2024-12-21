@@ -224,6 +224,9 @@
               </div>
               </div>
             </div>
+            <div class="card-footer">
+            <?= $pager->links('default', 'bootstrap_pagination') ?>
+            </div>
           </div> 
         </div>
       </main>
