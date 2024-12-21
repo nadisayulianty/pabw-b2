@@ -9,16 +9,19 @@ class ListAktivitasMahasiswa extends BaseController
 {
     public function index()
     {
-        $data = [
-            'list_aktivitas_mahasiswa' => $this->getListAktivitasMahasiswa()
-        ];
+        $data = $this->getListAktivitasMahasiswa();
         return view('rasyad/list_aktivitas_mahasiswa', $data);
     }
 
     public function getListAktivitasMahasiswa()
     {
-        $listAktivitasMahasiswa = new ModelsListAktivitasMahasiswa();
-        return $listAktivitasMahasiswa->findAll();
+        $model = model(ModelsListAktivitasMahasiswa::class);
+        $model->orderBy('id_aktivitas', 'DESC');
+
+        return [
+            'list_aktivitas_mahasiswa' => $model->paginate(5),
+            'pager' => $model->pager
+        ];
     }
 
     public function save()
@@ -31,25 +34,24 @@ class ListAktivitasMahasiswa extends BaseController
         $isValid = $validation->withRequest($this->request)->run();
 
         if ($isValid) {
-            $idAktivitas = $this->request->getPost('id_aktivitas');
 
+            $idAktivitas = $this->request->getPost('id_aktivitas');
             $listAktivitasMahasiswa = new ModelsListAktivitasMahasiswa();
 
             $data = $validation->getValidated();
-            $data['id_aktivitas'] = $listAktivitasMahasiswa->generateUUID();
 
             if (empty($idAktivitas)) {
+                $data['id_aktivitas'] = $listAktivitasMahasiswa->getNewId();
                 $listAktivitasMahasiswa->insert($data);
             } else {
                 $listAktivitasMahasiswa->update($idAktivitas, $data);
             }
 
-            return redirect()->to('table/list-aktivitas-mahasiswa');
+            return redirect()->to('table/list-aktivitas-mahasiswa')->with('success', 'Data berhasil disimpan');
         } else {
-            echo view('rasyad/list_aktivitas_mahasiswa', [
-                'errors' => $validation->getErrors(),
-                'list_aktivitas_mahasiswa' => $this->getListAktivitasMahasiswa()
-            ]);
+            $data = $this->getListAktivitasMahasiswa();
+            $data['errors'] = $validation->getErrors();
+            echo view('rasyad/list_aktivitas_mahasiswa', $data);
         }
     }
 
@@ -57,6 +59,6 @@ class ListAktivitasMahasiswa extends BaseController
     {
         $listAktivitasMahasiswa = new ModelsListAktivitasMahasiswa();
         $listAktivitasMahasiswa->delete($id);
-        return redirect()->to('table/list-aktivitas-mahasiswa');
+        return redirect()->to('table/list-aktivitas-mahasiswa')->with('success', 'Data berhasil dihapus');
     }
 }

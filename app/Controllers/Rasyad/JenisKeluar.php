@@ -9,14 +9,19 @@ class JenisKeluar extends BaseController
 {
     public function index()
     {
-        $data['jenis_keluar'] = $this->getJenisKeluar();
+        $data = $this->getJenisKeluar();
         return view('rasyad/jenis_keluar', $data);
     }
 
     public function getJenisKeluar()
     {
-        $jenisKeluar = new ModelsJenisKeluar();
-        return $jenisKeluar->findAll();
+        $model = model(ModelsJenisKeluar::class);
+        $model->orderBy('id_jenis_keluar', 'DESC');
+
+        return [
+            'jenis_keluar' => $model->paginate(5),
+            'pager' => $model->pager
+        ];
     }
 
     public function save()
@@ -45,13 +50,13 @@ class JenisKeluar extends BaseController
                 $jenisKeluar->insert($data);
             }
 
-            return redirect()->to('table/jenis-keluar');
+            return redirect()->to('table/jenis-keluar')->with('success', 'Data berhasil disimpan');
         }
 
-        echo view('rasyad/jenis_keluar', [
-            'errors' => $errors,
-            'jenisKeluar' => $this->getJenisKeluar()
-        ]);
+        $data = $this->getJenisKeluar();
+        $data['errors'] = $errors;
+
+        echo view('rasyad/jenis_keluar', $data);
     }
 
     public function delete($id)
@@ -59,6 +64,6 @@ class JenisKeluar extends BaseController
         $jenisKeluar = new ModelsJenisKeluar();
         $jenisKeluar->delete($id);
 
-        return redirect()->to('table/jenis-keluar');
+        return redirect()->to('table/jenis-keluar')->with('success', 'Data berhasil dihapus');
     }
 }

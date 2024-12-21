@@ -19,7 +19,7 @@
   <link href="../public/css/nucleo-svg.css" rel="stylesheet" />
 </head>
 
-<body>
+<body class="bg-primary">
 
   <?= $this->include('layout/admin/navbar') ?>
 

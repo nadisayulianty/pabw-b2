@@ -31,9 +31,14 @@
 				<div class="card mb-0">
 					<div class="card-header pb-0">
 						<h5>Table jenis keluar</h5>
-						<button type="button" class="btn bg-gradient-success btn-block mb-3" id="btn-add">
+						<button type="button" class="btn btn-primary btn-block mb-3" id="btn-add">
 							Tambah Data
 						</button>
+						<?php if (session('success')) : ?>
+							<div class="alert alert-success" role="alert">
+								<?= session('success') ?>
+							</div>
+						<?php endif; ?>
 						<?php if (! empty($errors)): ?>
 							<div class="alert alert-danger" role="alert">
 								<ul>
@@ -70,17 +75,16 @@
 												<p class="mb-0 text-sm"><?= $row['apa_mahasiswa'] ?></p>
 											</td>
 											<td class="text-center">
-												<a href="#" onclick="handleEdit(this)" data-row='<?php echo json_encode($row) ?>' class="btn bg-gradient-info btn-block">
+												<a href="#" onclick="handleEdit(this)" data-row='<?php echo json_encode($row) ?>' class="btn btn-success btn-block">
 													Edit
 												</a>
-												<a href="#" data-href="<?= base_url('table/jenis-keluar/' . $row['id_jenis_keluar'] . '/delete') ?>" onclick="confirmToDelete(this)" class="btn bg-gradient-danger btn-block" data-bs-toggle="modal" data-bs-target="#confirm-dialog">Hapus</a>
+												<a href="#" data-href="<?= base_url('table/jenis-keluar/' . $row['id_jenis_keluar'] . '/delete') ?>" onclick="confirmToDelete(this)" class="btn btn-danger btn-block" data-bs-toggle="modal" data-bs-target="#confirm-dialog">Hapus</a>
 											</td>
 										</tr>
 									<?php $no++;
 									endforeach ?>
 								</tbody>
 							</table>
-
 							<!-- js message data tidak ditemukan  -->
 							<div id="resultMessage" class="result-message text-center"></div>
 
@@ -124,7 +128,7 @@
 										<div class="modal-body p-0">
 											<div class="card card-plain">
 												<div class="card-header pb-0 text-left">
-													<h3 class="font-weight-bolder text-primary text-gradient">Form jenis keluar</h3>
+													<h3 class="font-weight-bolder">Form jenis keluar</h3>
 												</div>
 												<div class="card-body pb-3">
 													<form action="<?= base_url('table/jenis-keluar/save') ?>" method="post" role="form text-left" id="form-save-wilayah">
@@ -137,7 +141,7 @@
 														<div class="input-group mb-3">
 															<input type="text" class="form-control" name="apa_mahasiswa" placeholder="Apa mahasiswa" aria-label="id-negara" min="0" max="1">
 														</div>
-														<button type="submit" class="btn bg-gradient-primary btn-lg btn-rounded w-100 mt-4 mb-0">Simpan</button>
+														<button type="submit" class="btn btn-primary btn-lg w-100 mt-4 mb-0">Simpan</button>
 													</form>
 												</div>
 											</div>
@@ -146,6 +150,9 @@
 								</div>
 							</div>
 						</div>
+					</div>
+					<div class="card-footer">
+						<?= $pager->links('default', 'custom_pager_rasyad') ?>
 					</div>
 				</div>
 			</div>

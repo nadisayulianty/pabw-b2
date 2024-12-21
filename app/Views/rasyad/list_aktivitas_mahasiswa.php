@@ -31,9 +31,14 @@
 				<div class="card mb-0">
 					<div class="card-header pb-0">
 						<h5>Table list aktivitas mahasiswa</h5>
-						<button type="button" class="btn bg-gradient-success btn-block mb-3" id="btn-add">
+						<button type="button" class="btn btn-primary btn-block mb-3" id="btn-add">
 							Tambah Data
 						</button>
+						<?php if (session('success')): ?>
+							<div class="alert alert-success" role="alert">
+								<?= session('success') ?>
+							</div>
+						<?php endif; ?>
 						<?php if (! empty($errors)): ?>
 							<div class="alert alert-danger" role="alert">
 								<ul>
@@ -51,29 +56,29 @@
 								<thead>
 									<tr>
 										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">No</th>
-										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">nm_asaldata</th>
-										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">asal_data</th>
-										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">id_aktivitas</th>
-										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">program_mbkm</th>
-										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">nama_program_mbkm</th>
-										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">jenis_anggota</th>
-										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">nama_jenis_anggota</th>
-										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">id_jenis_aktivitas</th>
-										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">nama_jenis_aktivitas</th>
-										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">id_prodi</th>
-										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">nama_prodi</th>
-										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">id_semester</th>
-										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">nama_semester</th>
-										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">judul</th>
-										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">keterangan</th>
-										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">lokasi</th>
-										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">sk_tugas</th>
-										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">sumber_data</th>
-										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">tanggal_sk_tugas</th>
-										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">tanggal_mulai</th>
-										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">tanggal_selesai</th>
-										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">untuk_kampus_merdeka</th>
-										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">status_sync</th>
+										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">Nama asal data</th>
+										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">Asal data</th>
+										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">ID aktivitas</th>
+										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">Program MBKM</th>
+										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">Nama program MBKM</th>
+										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">Jenis anggota</th>
+										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">Nama jenis anggota</th>
+										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">ID jenis aktivitas</th>
+										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">Nama jenis aktivitas</th>
+										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">ID prodi</th>
+										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">Nama prodi</th>
+										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">Id semester</th>
+										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">Nama semester</th>
+										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">Judul</th>
+										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">Keterangan</th>
+										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">Lokasi</th>
+										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">SK Tugas</th>
+										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">Sumber data</th>
+										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">Tanggal SK tugas</th>
+										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">Tanggal mulai</th>
+										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">Tanggal selesai</th>
+										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">Untuk kampus merdeka</th>
+										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">Status sync</th>
 										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">Aksi</th>
 									</tr>
 								</thead>
@@ -154,10 +159,10 @@
 												<p class="mb-0 text-sm"><?= $row['status_sync'] ?></p>
 											</td>
 											<td class="text-center">
-												<a href="#" onclick="handleEdit(this)" data-row='<?php echo json_encode($row) ?>' class="btn bg-gradient-info btn-block">
+												<a href="#" onclick="handleEdit(this)" data-row='<?php echo json_encode($row) ?>' class="btn btn-success btn-block">
 													Edit
 												</a>
-												<a href="#" data-href="<?= base_url('table/list-aktivitas-mahasiswa/' . $row['id_aktivitas'] . '/delete') ?>" onclick="confirmToDelete(this)" class="btn bg-gradient-danger btn-block" data-bs-toggle="modal" data-bs-target="#confirm-dialog">Hapus</a>
+												<a href="#" data-href="<?= base_url('table/list-aktivitas-mahasiswa/' . $row['id_aktivitas'] . '/delete') ?>" onclick="confirmToDelete(this)" class="btn btn-danger btn-block" data-bs-toggle="modal" data-bs-target="#confirm-dialog">Hapus</a>
 											</td>
 										</tr>
 									<?php $no++;
@@ -203,111 +208,166 @@
 
 							<!-- modal tambah data -->
 							<div class="modal fade" id="modalCreate" tabindex="-1" role="dialog" aria-labelledby="exampleModalSignTitle" aria-hidden="true">
-								<div class="modal-dialog modal-dialog-centered modal-md" role="document">
+								<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
 									<div class="modal-content">
 										<div class="modal-body p-0">
 											<div class="card card-plain">
 												<div class="card-header pb-0 text-left">
-													<h3 class="font-weight-bolder text-primary text-gradient">Form wilayah</h3>
+													<h3 class="font-weight-bolder">Form list aktivitas mahasiswa</h3>
 												</div>
 												<div class="card-body pb-3">
 													<form action="<?= base_url('table/list-aktivitas-mahasiswa/save') ?>" method="post" role="form text-left">
 														<input type="hidden" value="" name="id_aktivitas">
-														<label>nm_asaldata</label>
-														<div class="input-group mb-3">
-															<input type="text" class="form-control" name="nm_asaldata" placeholder="nm_asaldata" aria-label="nm_asaldata" aria-describedby="nm_asaldata-addon">
+														<div class="row mb-2">
+															<div class="col-lg-6 col-md-6 col-sm-12">
+																<label>Nama asal data</label>
+																<div class="input-group mb-3">
+																	<select name="nm_asaldata" id="nm_asaldata" class="form-control">
+																		<option value="internal">Internal</option>
+																		<option value="eksternal">Eksternal</option>
+																	</select>
+																</div>
+															</div>
+															<div class="col-lg-6 col-md-6 col-sm-12">
+																<label>Asal Data</label>
+																<div class="input-group mb-3">
+																	<input type="text" class="form-control" name="asal_data" placeholder="asal_data" aria-label="asal_data" aria-describedby="asal_data-addon">
+																</div>
+															</div>
 														</div>
-														<label>asal_data</label>
-														<div class="input-group mb-3">
-															<input type="text" class="form-control" name="asal_data" placeholder="asal_data" aria-label="asal_data" aria-describedby="asal_data-addon">
+														<div class="row mb-2">
+															<div class="col-lg-6 col-md-6 col-12">
+																<label>Program MBKM</label>
+																<div class="input-group mb-3">
+																	<input type="text" class="form-control" name="program_mbkm" placeholder="program_mbkm" aria-label="program_mbkm" aria-describedby="program_mbkm-addon">
+																</div>
+															</div>
+															<div class="col-lg-6 col-md-6 col-12">
+																<label>Nama Program MBKM</label>
+																<div class="input-group mb-3">
+																	<select name="nama_program_mbkm" id="" class="form-control">
+																		<option value="Mandiri">Mandiri</option>
+																		<option value="Lain-lain">Lain-lain</option>
+																	</select>
+																</div>
+															</div>
 														</div>
-														<label>program_mbkm</label>
-														<div class="input-group mb-3">
-															<input type="text" class="form-control" name="program_mbkm" placeholder="program_mbkm" aria-label="program_mbkm" aria-describedby="program_mbkm-addon">
+														<div class="row mb-2">
+															<div class="col-lg-6 col-md-6 col-sm-12">
+																<label>Jenis Anggota</label>
+																<div class="input-group mb-3">
+																	<input type="text" class="form-control" name="jenis_anggota" placeholder="jenis_anggota" aria-label="jenis_anggota" aria-describedby="jenis_anggota-addon">
+																</div>
+															</div>
+															<div class="col-lg-6 col-md-6 col-sm-12">
+																<label>Nama Jenis Anggota</label>
+																<div class="input-group mb-3">
+																	<select name="nama_jenis_anggota" id="" class="form-control">
+																		<option value="Personal">Personal</option>
+																		<option value="Organisasi">Organisasi</option>
+																	</select>
+																</div>
+															</div>
 														</div>
-														<label>nama_program_mbkm</label>
-														<div class="input-group mb-3">
-															<select name="nama_program_mbkm" id="" class="form-control">
-																<option value="Mandiri">Mandiri</option>
-																<option value="Lain-lain">Lain-lain</option>
-															</select>
+														<div class="row mb-2">
+															<div class="col-lg-6 col-md-6 col-sm-12">
+																<label>ID Jenis aktivitas</label>
+																<div class="input-group mb-3">
+																	<input type="text" class="form-control" name="id_jenis_aktivitas" placeholder="id_jenis_aktivitas" aria-label="id_jenis_aktivitas" aria-describedby="id_jenis_aktivitas-addon">
+																</div>
+															</div>
+															<div class="col-lg-6 col-md-6 col-sm-12">
+																<label>Nama jenis aktivitas</label>
+																<div class="input-group mb-3">
+																	<input type="text" class="form-control" name="nama_jenis_aktivitas" placeholder="nama_jenis_aktivitas" aria-label="nama_jenis_aktivitas" aria-describedby="nama_jenis_aktivitas-addon">
+																</div>
+															</div>
 														</div>
-														<label>jenis_anggota</label>
-														<div class="input-group mb-3">
-															<input type="text" class="form-control" name="jenis_anggota" placeholder="jenis_anggota" aria-label="jenis_anggota" aria-describedby="jenis_anggota-addon">
+														<div class="row mb-2">
+															<div class="col-lg-6 col-md-6 col-sm-12">
+																<label>ID Prodi</label>
+																<div class="input-group mb-3">
+																	<input type="text" class="form-control" name="id_prodi" placeholder="id_prodi" aria-label="id_prodi" aria-describedby="id_prodi-addon">
+																</div>
+															</div>
+															<div class="col-lg-6 col-md-6 col-sm-12">
+																<label>Nama Prodi</label>
+																<div class="input-group mb-3">
+																	<input type="text" class="form-control" name="nama_prodi" placeholder="nama_prodi" aria-label="nama_prodi" aria-describedby="nama_prodi-addon">
+																</div>
+															</div>
 														</div>
-														<label>nama_jenis_anggota</label>
-														<div class="input-group mb-3">
-															<select name="nama_jenis_anggota" id="" class="form-control">
-																<option value="Personal">Personal</option>
-																<option value="Organisasi">Organisasi</option>
-															</select>
+														<div class="row mb-2">
+															<div class="col-lg-6 col-md-6 col-sm-12">
+																<label>Id Semester</label>
+																<div class="input-group mb-3">
+																	<input type="text" class="form-control" name="id_semester" placeholder="id_semester" aria-label="id_semester" aria-describedby="id_semester-addon">
+																</div>
+															</div>
+															<div class="col-lg-6 col-md-6 col-sm-12">
+																<label>Nama Semester</label>
+																<div class="input-group mb-3">
+																	<input type="text" class="form-control" name="nama_semester" placeholder="nama_semester" aria-label="nama_semester" aria-describedby="nama_semester-addon">
+																</div>
+															</div>
 														</div>
-														<label>id_jenis_aktivitas</label>
-														<div class="input-group mb-3">
-															<input type="text" class="form-control" name="id_jenis_aktivitas" placeholder="id_jenis_aktivitas" aria-label="id_jenis_aktivitas" aria-describedby="id_jenis_aktivitas-addon">
+														<div class="row mb-2">
+															<div class="col-lg-6 col-md-6 col-sm-12">
+																<label>Lokasi</label>
+																<div class="input-group mb-3">
+																	<input type="text" class="form-control" name="lokasi" placeholder="lokasi" aria-label="lokasi" aria-describedby="lokasi-addon">
+																</div>
+															</div>
+															<div class="col-lg-6 col-md-6 col-sm-12">
+																<label>SK Tugas</label>
+																<div class="input-group mb-3">
+																	<input type="text" class="form-control" name="sk_tugas" placeholder="sk_tugas" aria-label="sk_tugas" aria-describedby="sk_tugas-addon">
+																</div>
+															</div>
 														</div>
-														<label>nama_jenis_aktivitas</label>
-														<div class="input-group mb-3">
-															<input type="text" class="form-control" name="nama_jenis_aktivitas" placeholder="nama_jenis_aktivitas" aria-label="nama_jenis_aktivitas" aria-describedby="nama_jenis_aktivitas-addon">
+														<div class="row mb-2">
+															<div class="col-lg-6 col-md-6 col-sm-12">
+																<label>Sumber data</label>
+																<div class="input-group mb-3">
+																	<input type="text" class="form-control" name="sumber_data" placeholder="sumber_data" aria-label="sumber_data" aria-describedby="sumber_data-addon">
+																</div>
+															</div>
+															<div class="col-lg-6 col-md-6 col-sm-12">
+																<label>Tanggal SK tugas</label>
+																<div class="input-group mb-3">
+																	<input type="date" class="form-control" name="tanggal_sk_tugas" placeholder="tanggal_sk_tugas" aria-label="tanggal_sk_tugas" aria-describedby="tanggal_sk_tugas-addon">
+																</div>
+															</div>
 														</div>
-														<label>id_prodi</label>
-														<div class="input-group mb-3">
-															<input type="text" class="form-control" name="id_prodi" placeholder="id_prodi" aria-label="id_prodi" aria-describedby="id_prodi-addon">
+														<div class="row mb-2">
+															<div class="col-lg-6 col-md-6 col-sm-12">
+																<label>Tanggal mulai</label>
+																<div class="input-group mb-3">
+																	<input type="date" class="form-control" name="tanggal_mulai" placeholder="tanggal_mulai" aria-label="tanggal_mulai" aria-describedby="tanggal_mulai-addon">
+																</div>
+															</div>
+															<div class="col-lg-6 col-md-6 col-sm-12">
+																<label>Tanggal berakhir</label>
+																<div class="input-group mb-3">
+																	<input type="date" class="form-control" name="tanggal_selesai" placeholder="tanggal_selesai" aria-label="tanggal_selesai" aria-describedby="tanggal_selesai-addon">
+																</div>
+															</div>
 														</div>
-														<label>nama_prodi</label>
-														<div class="input-group mb-3">
-															<input type="text" class="form-control" name="nama_prodi" placeholder="nama_prodi" aria-label="nama_prodi" aria-describedby="nama_prodi-addon">
+														<div class="row mb-2">
+															<div class="col-lg-6 col-md-6 col-sm-12">
+																<label>Untuk kampus merdeka</label>
+																<div class="input-group mb-3">
+																	<input type="text" class="form-control" name="untuk_kampus_merdeka" placeholder="untuk_kampus_merdeka" aria-label="untuk_kampus_merdeka" aria-describedby="untuk_kampus_merdeka-addon">
+																</div>
+															</div>
+															<div class="col-lg-6 col-md-6 col-sm-12">
+																<label>Status Sync</label>
+																<div class="input-group mb-3">
+																	<input type="text" class="form-control" name="status_sync" placeholder="status_sync" aria-label="status_sync" aria-describedby="status_sync-addon">
+																</div>
+															</div>
 														</div>
-														<label>id_semester</label>
-														<div class="input-group mb-3">
-															<input type="text" class="form-control" name="id_semester" placeholder="id_semester" aria-label="id_semester" aria-describedby="id_semester-addon">
-														</div>
-														<label>nama_semester</label>
-														<div class="input-group mb-3">
-															<input type="text" class="form-control" name="nama_semester" placeholder="nama_semester" aria-label="nama_semester" aria-describedby="nama_semester-addon">
-														</div>
-														<label>judul</label>
-														<div class="input-group mb-3">
-															<input type="text" class="form-control" name="judul" placeholder="judul" aria-label="judul" aria-describedby="judul-addon">
-														</div>
-														<label>keterangan</label>
-														<div class="input-group mb-3">
-															<input type="text" class="form-control" name="keterangan" placeholder="keterangan" aria-label="keterangan" aria-describedby="keterangan-addon">
-														</div>
-														<label>lokasi</label>
-														<div class="input-group mb-3">
-															<input type="text" class="form-control" name="lokasi" placeholder="lokasi" aria-label="lokasi" aria-describedby="lokasi-addon">
-														</div>
-														<label>sk_tugas</label>
-														<div class="input-group mb-3">
-															<input type="text" class="form-control" name="sk_tugas" placeholder="sk_tugas" aria-label="sk_tugas" aria-describedby="sk_tugas-addon">
-														</div>
-														<label>sumber_data</label>
-														<div class="input-group mb-3">
-															<input type="text" class="form-control" name="sumber_data" placeholder="sumber_data" aria-label="sumber_data" aria-describedby="sumber_data-addon">
-														</div>
-														<label>tanggal_sk_tugas</label>
-														<div class="input-group mb-3">
-															<input type="date" class="form-control" name="tanggal_sk_tugas" placeholder="tanggal_sk_tugas" aria-label="tanggal_sk_tugas" aria-describedby="tanggal_sk_tugas-addon">
-														</div>
-														<label>tanggal_mulai</label>
-														<div class="input-group mb-3">
-															<input type="date" class="form-control" name="tanggal_mulai" placeholder="tanggal_mulai" aria-label="tanggal_mulai" aria-describedby="tanggal_mulai-addon">
-														</div>
-														<label>tanggal_selesai</label>
-														<div class="input-group mb-3">
-															<input type="date" class="form-control" name="tanggal_selesai" placeholder="tanggal_selesai" aria-label="tanggal_selesai" aria-describedby="tanggal_selesai-addon">
-														</div>
-														<label>untuk_kampus_merdeka</label>
-														<div class="input-group mb-3">
-															<input type="text" class="form-control" name="untuk_kampus_merdeka" placeholder="untuk_kampus_merdeka" aria-label="untuk_kampus_merdeka" aria-describedby="untuk_kampus_merdeka-addon">
-														</div>
-														<label>status_sync</label>
-														<div class="input-group mb-3">
-															<input type="text" class="form-control" name="status_sync" placeholder="status_sync" aria-label="status_sync" aria-describedby="status_sync-addon">
-														</div>
-														<button type="submit" class="btn bg-gradient-primary btn-lg btn-rounded w-100 mt-4 mb-0">Simpan</button>
+														<button type="submit" class="btn btn-primary btn-lg w-100 mt-4 mb-0">Simpan</button>
 													</form>
 												</div>
 											</div>
@@ -316,6 +376,9 @@
 								</div>
 							</div>
 						</div>
+					</div>
+					<div class="card-footer">
+						<?= $pager->links('default', 'custom_pager_rasyad') ?>
 					</div>
 				</div>
 			</div>

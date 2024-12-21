@@ -9,14 +9,19 @@ class Wilayah extends BaseController
 {
     public function index()
     {
-        $data['wilayah'] = $this->getWilayah();
+        $data = $this->getWilayah();
         return view('rasyad/wilayah', $data);
     }
 
     public function getWilayah()
     {
-        $wilayahModel = new WilayahModel();
-        return $wilayahModel->findAll();
+        $model = model(WilayahModel::class);
+        $model->orderBy('id_wilayah', 'DESC');
+
+        return [
+            'wilayah' => $model->paginate(5),
+            'pager' => $model->pager
+        ];
     }
 
     public function save()
@@ -48,13 +53,13 @@ class Wilayah extends BaseController
                 $wilayahModel->insert($data);
             }
 
-            return redirect()->to('table/wilayah');
+            return redirect()->to('table/wilayah')->with('success', 'Data berhasil disimpan');
         }
 
-        echo view('rasyad/wilayah', [
-            'errors' => $errors,
-            'wilayah' => $this->getWilayah()
-        ]);
+        $data = $this->getWilayah();
+        $data['errors'] = $errors;
+
+        echo view('rasyad/wilayah', $data);
     }
 
     public function delete($id)
@@ -62,6 +67,6 @@ class Wilayah extends BaseController
         $wilayahModel = new WilayahModel();
         $wilayahModel->delete($id);
 
-        return redirect()->to('table/wilayah');
+        return redirect()->to('table/wilayah')->with('success', 'Data berhasil dihapus');
     }
 }

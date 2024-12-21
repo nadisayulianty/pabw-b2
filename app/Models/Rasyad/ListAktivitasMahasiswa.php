@@ -62,8 +62,10 @@ class ListAktivitasMahasiswa extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    public function generateUUID()
+    public function getNewId()
     {
-        return md5(uniqid(rand(), true));
+        $this->select('MAX(id_aktivitas) as id_aktivitas');
+        $result = $this->first();
+        return $result['id_aktivitas'] + 1;
     }
 }
