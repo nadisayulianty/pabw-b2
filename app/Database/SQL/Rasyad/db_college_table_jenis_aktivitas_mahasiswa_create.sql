@@ -1,5 +1,3 @@
-DROP TABLE IF EXISTS `jenis_aktivitas_mahasiswa`;
-
 CREATE TABLE `jenis_aktivitas_mahasiswa` (
   `id_jenis_aktivitas_mahasiswa` int(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `nama_jenis_aktivitas_mahasiswa` varchar(100) NOT NULL,

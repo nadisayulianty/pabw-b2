@@ -1,5 +1,3 @@
-DROP TABLE IF EXISTS `wilayah`;
-
 CREATE TABLE `wilayah` (
   `id_wilayah` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `id_level_wilayah` int(11) DEFAULT NULL,
