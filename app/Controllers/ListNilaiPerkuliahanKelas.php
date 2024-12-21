@@ -9,8 +9,13 @@ class ListNilaiPerkuliahanKelas extends BaseController
 {
     public function index()
     {
+        // $listNilaiPerkuliahanKelas = new DBtableListNilaiPerkuliahanKelas();
+        // $data['listNilaiPerkuliahanKelas'] = $listNilaiPerkuliahanKelas->findAll();
+        // echo view('list-nilai-perkuliahan-kelas', $data);
+
         $listNilaiPerkuliahanKelas = new DBtableListNilaiPerkuliahanKelas();
-        $data['listNilaiPerkuliahanKelas'] = $listNilaiPerkuliahanKelas->findAll();
+        $data['listNilaiPerkuliahanKelas'] = $listNilaiPerkuliahanKelas->paginate(5);
+        $data['pager'] = $listNilaiPerkuliahanKelas->pager;
         echo view('list-nilai-perkuliahan-kelas', $data);
     }
 

@@ -42,46 +42,33 @@
                             <table class="table table-hover align-items-center mb-0">
                                 <thead>
                                     <tr>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">No</th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">Kode Mata Kuliah</th>
-                                        <th class="text-center text-uppercase text-xxs font-weight-bolder ">Nama Mata Kuliah</th>
-                                        <th class="text-center text-uppercase text-xxs font-weight-bolder">SKS Mata Kuliah</th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">Nama Program Studi</th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">Aksi</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">No</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Kode Mata Kuliah</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Nama Mata Kuliah</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">SKS Mata Kuliah</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Nama Program Studi</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $no = 1;
-                                    foreach ($listMataKuliah as $listMataKuliah): ?>
+                                    <?php $no = 1 + (5 * ($pager->getCurrentPage() - 1)); ?>
+                                    <?php foreach ($listMataKuliah as $list): ?>
                                         <tr>
+                                            <td class="text-center"><?= $no++; ?></td>
+                                            <td class="text-center"><?= $list['kode_mata_kuliah']; ?></td>
+                                            <td class="text-center"><?= $list['nama_mata_kuliah']; ?></td>
+                                            <td class="text-center"><?= $list['sks_mata_kuliah']; ?></td>
+                                            <td class="text-center"><?= $list['nama_program_studi']; ?></td>
                                             <td class="text-center">
-                                                <p class="mb-0 text-sm"><?= $no; ?></p>
-                                            </td>
-                                            <td class="text-center">
-                                                <p class="mb-0 text-sm"><?= $listMataKuliah['kode_mata_kuliah'] ?></p>
-                                            </td>
-
-                                            <td class="text-center">
-                                                <p class="mb-0 text-sm"><?= $listMataKuliah['nama_mata_kuliah'] ?></p>
-                                            </td>
-                                            <td class="text-center">
-                                                <p class="mb-0 text-sm"><?= $listMataKuliah['sks_mata_kuliah'] ?></p>
-                                            </td>
-                                            <td class="text-center">
-                                                <p class="mb-0 text-sm"><?= $listMataKuliah['nama_program_studi'] ?></p>
-                                            </td>
-
-                                            <td class="text-center">
-                                                <!-- aksi -->
-                                                <a href="<?= base_url('table/list-mata-kuliah/' . $listMataKuliah['id_matkul'] . '/edit') ?>" class="btn bg-gradient-info btn-block">
+                                                <!-- <a href="<?= base_url('table/list-mata-kuliah/' . $list['id_matkul'] . '/edit'); ?>" class="btn bg-gradient-info">Edit</a>
+                                                <a href="<?= base_url('table/list-mata-kuliah/' . $list['id_matkul'] . '/delete'); ?>" class="btn bg-gradient-danger">Hapus</a> -->
+                                                <a href="<?= base_url('table/list-mata-kuliah/' . $list['id_matkul'] . '/edit') ?>" class="btn bg-gradient-info btn-block">
                                                     Edit
                                                 </a>
-                                                <a href="#" data-href="<?= base_url('table/list-mata-kuliah/' . $listMataKuliah['id_matkul'] . '/delete') ?>" onclick="confirmToDelete(this)" class="btn bg-gradient-danger btn-block" data-bs-toggle="modal" data-bs-target="#confirm-dialog">Hapus</a>
+                                                <a href="#" data-href="<?= base_url('table/list-mata-kuliah/' . $list['id_matkul'] . '/delete') ?>" onclick="confirmToDelete(this)" class="btn bg-gradient-danger btn-block" data-bs-toggle="modal" data-bs-target="#confirm-dialog">Hapus</a>
                                             </td>
-                                            <!-- ------------------------------------ -->
                                         </tr>
-                                    <?php $no++;
-                                    endforeach ?>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
 
@@ -106,7 +93,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <!-- js delete -->
                             <script>
                                 function confirmToDelete(element) {
@@ -134,10 +120,6 @@
                                                 <div class="card-body pb-3">
                                                     <form action="<?= base_url('table/list-mata-kuliah/new') ?>" method="post" role="form text-left">
 
-                                                        <label>No</label>
-                                                        <div class="input-group mb-3">
-                                                            <input type="text" class="form-control" name="no" placeholder="<?= $no; ?>" aria-label="no" aria-describedby="email-addon" disabled>
-                                                        </div>
                                                         <label>Kode Matakuliah</label>
                                                         <div class="input-group mb-3">
                                                             <input type="text" class="form-control" name="kode_mata_kuliah" placeholder="Kode Matakuliah" aria-describedby="email-addon" required>
@@ -164,7 +146,13 @@
                                     </div>
                                 </div>
                             </div>
+
                         </div>
+
+                        <div class="pagination justify-content-center mt-3">
+                            <?= $pager->links('default', 'bootstrap_pagination'); ?>
+                        </div>
+
                     </div>
                 </div>
             </div>
