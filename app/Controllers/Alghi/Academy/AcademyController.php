@@ -11,8 +11,10 @@ class AcademyController extends EnvironmentController
     }
 
     public function index() {
+        $datas = static::$__model->paginate(5);
         return view("alghi/academyManagement/index",[
-            "datas" => static::$__model->findAll()
+            "datas" => $datas,
+            "pager" => static::$__model->pager,
         ]);
     }
 

@@ -52,11 +52,11 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $no = 1;
-                                    foreach ($listNilaiPerkuliahanKelas as $listNilaiPerkuliahanKelas): ?>
+                                    <?php $no = 1 + (5 * ($pager->getCurrentPage() - 1)); ?>
+                                    <?php foreach ($listNilaiPerkuliahanKelas as $listNilaiPerkuliahanKelas): ?>
                                         <tr>
                                             <td class="text-center">
-                                                <p class="mb-0 text-sm"><?= $no; ?></p>
+                                                <p class="mb-0 text-sm"><?= $no++; ?></p>
                                             </td>
                                             <td class="text-center">
                                                 <p class="mb-0 text-sm"><?= $listNilaiPerkuliahanKelas['nama_mata_kuliah'] ?></p>
@@ -84,8 +84,8 @@
                                             </td>
                                             <!-- ------------------------------------ -->
                                         </tr>
-                                    <?php $no++;
-                                    endforeach ?>
+                                    <?php endforeach; ?>
+
                                 </tbody>
                             </table>
 
@@ -138,10 +138,6 @@
                                                 <div class="card-body pb-3">
                                                     <form action="<?= base_url('table/list-nilai-perkuliahan-kelas/new') ?>" method="post" role="form text-left">
 
-                                                        <label>No</label>
-                                                        <div class="input-group mb-3">
-                                                            <input type="text" class="form-control" name="no" placeholder="<?= $no; ?>" aria-label="no" aria-describedby="email-addon" disabled>
-                                                        </div>
                                                         <label>Nama Matakuliah</label>
                                                         <div class="input-group mb-3">
                                                             <input type="text" class="form-control" name="nama_mata_kuliah" placeholder="Nama Matakuliah" aria-describedby="email-addon" required>
@@ -172,6 +168,9 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="pagination justify-content-center mt-3">
+                            <?= $pager->links('default', 'bootstrap_pagination'); ?>
                         </div>
                     </div>
                 </div>
