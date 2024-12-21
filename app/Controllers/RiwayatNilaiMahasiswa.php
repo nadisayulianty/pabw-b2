@@ -8,19 +8,49 @@ class RiwayatNilaiMahasiswa extends BaseController
 {
     public function index()
 	{
-        $data = $this->getAllData();
+        $search = $this->request->getVar('search'); // Ambil inputan search
+        $data = $this->getAllData($search);
 		echo view('tableRiwayatNilaiMahasiswa', $data);
 	}
 
-    public function getAllData(){
+    public function getAllData($search = null){
         $generatedID = $this->generateId();
-        $generateRandomID = $this->generateRandomID();
         $tableRiwayatNilaiMahasiswa = new DBtableRiwayatNilaiMahasiswa();
-        $data['tableRiwayatNilaiMahasiswa'] = $tableRiwayatNilaiMahasiswa->findAll();
-        $data['getLastID'] = $generatedID;
-        $data['generateRandomID'] = $generateRandomID;
+        // Query untuk search
+        if ($search) {
+            $tableRiwayatNilaiMahasiswa = $tableRiwayatNilaiMahasiswa->like('nim', $search);
+        }
+        // $data['tableRiwayatNilaiMahasiswa'] = $tableRiwayatNilaiMahasiswa->findAll();
+        // $data['getLastID'] = $generatedID;
+         // Tambahkan pagination
+        $data = [
+            'tableRiwayatNilaiMahasiswa' => $tableRiwayatNilaiMahasiswa->paginate(5), // Data dengan 10 record per halaman
+            'pager' => $tableRiwayatNilaiMahasiswa->pager, // Objek pager
+            'getLastID' => $generatedID,
+            'search' => $search // Kirim search input kembali ke view
+        ];
+        // Dapatkan query terakhir
+        // $lastQuery = $tableRiwayatNilaiMahasiswa->db->getLastQuery();
+
+        // // cek query di browser
+        // echo '<pre>' . $lastQuery . '</pre>';exit;
         return $data;
     }
+    // public function index()
+	// {
+    //     $data = $this->getAllData();
+	// 	echo view('tableRiwayatNilaiMahasiswa', $data);
+	// }
+
+    // public function getAllData(){
+    //     $generatedID = $this->generateId();
+    //     $generateRandomID = $this->generateRandomID();
+    //     $tableRiwayatNilaiMahasiswa = new DBtableRiwayatNilaiMahasiswa();
+    //     $data['tableRiwayatNilaiMahasiswa'] = $tableRiwayatNilaiMahasiswa->findAll();
+    //     $data['getLastID'] = $generatedID;
+    //     $data['generateRandomID'] = $generateRandomID;
+    //     return $data;
+    // }
 
     public function generateId()
     {
