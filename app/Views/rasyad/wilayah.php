@@ -179,7 +179,7 @@
 						</div>
 					</div>
 					<div class="card-footer">
-						<?= $pager->links('default', 'custom_pager_rasyad') ?>
+						<?= $pager->links('default', 'bootstrap_pagination') ?>
 					</div>
 				</div>
 			</div>
