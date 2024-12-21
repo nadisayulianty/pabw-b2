@@ -5,7 +5,7 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-$routes->get('/', 'Home::index');
+$routes->addRedirect('/', '/dashboard');
 $routes->get('/dashboard', 'Dashboard::index');
 /** routes dashboard */
 
