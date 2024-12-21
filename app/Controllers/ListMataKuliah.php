@@ -9,8 +9,15 @@ class ListMataKuliah extends BaseController
 {
     public function index()
     {
+        // $listMataKuliah = new DBlistMataKuliah();
+        // $data['listMataKuliah'] = $listMataKuliah->findAll();
+        // echo view('list-mata-kuliah', $data);
+
         $listMataKuliah = new DBlistMataKuliah();
-        $data['listMataKuliah'] = $listMataKuliah->findAll();
+
+        $data['listMataKuliah'] = $listMataKuliah->paginate(5);
+        $data['pager'] = $listMataKuliah->pager;
+
         echo view('list-mata-kuliah', $data);
     }
 

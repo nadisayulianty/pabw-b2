@@ -110,6 +110,10 @@
                                     </tbody>
                                 </table>
 
+                                 <div class="pagination justify-content-center mt-3">
+                                    <?= $pager->links('default', 'bootstrap_pagination'); ?>
+                                </div>
+
                                 <!-- js message data tidak ditemukan  -->
                                 <div id="resultMessage" class="result-message text-center"></div>
 

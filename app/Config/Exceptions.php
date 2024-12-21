@@ -106,6 +106,6 @@ class Exceptions extends BaseConfig
             return $handler->handleException($exception);
         }else {
             return new ExceptionHandler($this);
-        }
+      }
     }
 }

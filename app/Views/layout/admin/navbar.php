@@ -38,7 +38,6 @@
             $superadmin    = $roleModel->where('nama', 'superadmin')->first();
             $superadminId  = $superadmin ? $superadmin['id'] : 0;
           ?>
-
           <?php foreach ($menus as $menu): ?>
               <?php if (in_array($menu['nama'], $akses)  && has_permission($roleId, 'read')): ?>
                   <li><a class="dropdown-item" href="<?= base_url($menu['route']) ?>"> <?= $menu['nama'] ?> </a></li>
