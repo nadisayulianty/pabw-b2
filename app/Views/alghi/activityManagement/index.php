@@ -110,8 +110,8 @@
                                     </tbody>
                                 </table>
 
-                                <div style="gap:2px;margin-top: 5px;margin-left: 10px;">
-                                    <?= $pager->links(); ?>
+                                 <div class="pagination justify-content-center mt-3">
+                                    <?= $pager->links('default', 'bootstrap_pagination'); ?>
                                 </div>
 
 
