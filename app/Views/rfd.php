@@ -79,6 +79,10 @@
                   </tbody>
                 </table>
 
+                <div class="pagination justify-content-center mt-3">
+                <?= $pager->makeLinks($page,$perPage, $total, 'custom_pager') ?>
+                </div>
+
                   <!-- js message data tidak ditemukan  -->
                 <div id="resultMessage" class="result-message text-center"></div>
 
