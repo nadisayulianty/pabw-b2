@@ -1,0 +1,13 @@
+INSERT INTO `detail_perkuliahan_mahasiswa` (`id_registrasi_mahasiswa`, `id_prodi`, `nama_program_studi`, `angkatan`, `id_semester`, `nim`, `nama_mahasiswa`, `nama_semester`, `id_status_mahasiswa`, `nama_status_mahasiswa`, `ips`, `ipk`, `sks_semester`, `sks_total`, `status_async`) VALUES
+('f535b2a2-fc33-48d7-91c5-de0dfec5b3e6', 'd0a46e68-7927-4603-893a-f449f4563f6b', 'S2 Manajemen', '2021', '20211', '51421120000', 'wati', '2021/2022 Ganjil', 'A', 'Aktif', 3, 3, '12', '12', 'sudah sync'),
+('g347h6c7-uv35-22k5-10f7-jp4acez9g5l0', '', 'S2 Manajemen', '2021', '20212', '51421120181', 'ranti', '2021/2022 Genap', 'A', 'Aktif', 3.18, 3.18, '21', '21', 'sudah sync'),
+('f535b2a2-fc33-48d7-91c5-de0dfec5b3e6', 'd0a46e68-7927-4603-893a-f449f4563f6b', 'S2 Manajemen', '2021', '20213', '51421120000', 'wati', '2021/2022 Genap', 'A', 'Aktif', 3, 3, '12', '12', 'sudah sync'),
+('g347h6c7-uv35-22k5-10f7-jp4acez9g5l2', 'p3g76a45-6936-7541-457b-f166g5069t44', 'S2 Akuntansi', '2021', '20347', '22104000001', 'stevi', '2021/2022 Genap', 'A', 'Aktif', 3.27, 3.27, '21', '21', 'sudah sync'),
+('tk8937g7-64h5-834g-rt92-29hw9927j479', 'kt378h89-3729-7890-365p-g179gd81h077', 'S1 Informatika', '2022', '20360', '22060400096', 'javas', '2021/2022 Genap', 'A', 'Aktif', 3.15, 3.15, '21', '21', 'sudah sync'),
+('g347h6c7-uv35-22k5-10f7-jp4acez9g5l1', 'p3g76a45-6936-7541-457b-f166g5069t44', 'S2 Akuntansi', '2021', '20365', '22104000111', 'rekti', '2021/2022 Ganjil', 'A', 'Aktif', 3, 3, '18', '21', 'sudah sync'),
+('y278h384-k289-y34h-su38-19uw738p18g3', 'kt378h89-3729-7890-365p-g179gd81h077', 'S1 Informatika', '2022', '20370', '22060400109', 'sanjaya', '2021/2022 Ganjil', 'A', 'Aktif', 3.25, 3.25, '21', '21', 'sudah sync'),
+('y278h384-k289-y34h-su38-19uw738p18g1', 'p3g76a45-6936-7541-457b-f166g5069t44', 'S2 Akuntansi', '2021', '20612', '22104000012', 'ujang', '2021/2022 Ganjil', 'A', 'Aktif', 3.1, 3.1, '18', '21', 'sudah sync'),
+('y278h384-k289-y34h-su38-19uw738p18g2', 'kt378h89-3729-7890-365p-g179gd81h077', 'S1 Informatika', '2022', '20769', '22060400096', 'patrick', '2021/2022 Genap', 'A', 'Aktif', 3.2, 3.2, '21', '21', 'sudah sync'),
+('tk8937g7-64h5-834g-rt92-29hw9927j480', '2gd3kd22-7343-8036-db47-rv84r4800k33', 'S1 Metalurgi', '2020', '21920', '20330909126', 'aikya', '2021/2022 Genap', 'A', 'Aktif', 3.07, 3.07, '21', '21', 'sudah sync'),
+('tk8937g7-64h5-834g-rt92-29hw9927j481', '2gd3kd22-7343-8036-db47-rv84r4800k33', 'S1 Metalurgi', '2020', '21921', '20330909100', 'deo', '2021/2022 Genap', 'A', 'Aktif', 3.17, 3.17, '21', '21', 'sudah sync'),
+('tk8937g7-64h5-834g-rt92-29hw9927j234', '2gd3kd22-7343-8036-db47-rv84r4800k33', 'S1 Metalurgi', '2020', '21922', '20330909111', 'enzi', '2021/2022 Genap', 'A', 'Aktif', 3.3, 3.3, '21', '21', 'sudah sync');
