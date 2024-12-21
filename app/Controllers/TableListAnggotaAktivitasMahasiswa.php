@@ -14,10 +14,14 @@ class TableListAnggotaAktivitasMahasiswa extends BaseController
 	}
     public function get_all_data(){
         $model = model(DBtablelistanggotaaktivitasmahasiswa::class);
-
+        $search = $this->request->getGet('search');
+        if ($search) {
+            $model->like('nama_mahasiswa', $search);
+        }
         return [
-            'tablelistanggotaaktivitasmahasiswa' => $model->paginate(10),
+            'tablelistanggotaaktivitasmahasiswa' => $model->paginate(5),
             'pager' => $model->pager,
+            'search' => $search
         ];
     }
 

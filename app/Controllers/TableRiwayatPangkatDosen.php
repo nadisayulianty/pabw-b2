@@ -15,9 +15,16 @@ class TableRiwayatPangkatDosen extends BaseController
     public function get_all_data(){
         $model = model(DBtableriwayatpangkatdosen::class);
 
+        $search = $this->request->getGet('search');
+
+        if($search) {
+            $model->like('nama_dosen', $search);
+        }
+
         return [
-            'tableriwayatpangkatdosen' => $model->paginate(10),
+            'tableriwayatpangkatdosen' => $model->paginate(5),
             'pager' => $model->pager,
+            'search' => $search
         ];
     }
 
