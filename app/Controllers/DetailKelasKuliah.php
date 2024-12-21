@@ -8,15 +8,32 @@ class DetailKelasKuliah extends BaseController
 {
     public function index()
 	{
-        $data = $this->getAllData();
+        $search = $this->request->getVar('search'); // Ambil inputan search
+        $data = $this->getAllData($search);
 		echo view('tableDetailKelasKuliah', $data);
 	}
 
-    public function getAllData(){
+    public function getAllData($search = null){
         $generatedID = $this->generateId();
         $tableDetailKelasKuliah = new DBtableDetailKelasKuliah();
-        $data['tableDetailKelasKuliah'] = $tableDetailKelasKuliah->findAll();
-        $data['getLastID'] = $generatedID;
+        // Query untuk search
+        if ($search) {
+            $tableDetailKelasKuliah = $tableDetailKelasKuliah->like('nama_mata_kuliah', $search);
+        }
+        // $data['tableDetailKelasKuliah'] = $tableDetailKelasKuliah->findAll();
+        // $data['getLastID'] = $generatedID;
+         // Tambahkan pagination
+        $data = [
+            'tableDetailKelasKuliah' => $tableDetailKelasKuliah->paginate(5), // Data dengan 10 record per halaman
+            'pager' => $tableDetailKelasKuliah->pager, // Objek pager
+            'getLastID' => $generatedID,
+            'search' => $search // Kirim search input kembali ke view
+        ];
+        // Dapatkan query terakhir
+        // $lastQuery = $tableDetailKelasKuliah->db->getLastQuery();
+
+        // // cek query di browser
+        // echo '<pre>' . $lastQuery . '</pre>';exit;
         return $data;
     }
 
@@ -125,7 +142,9 @@ class DetailKelasKuliah extends BaseController
         // Ambil data yang akan diedit
         $tableDetailKelasKuliah = new DBtableDetailKelasKuliah();
         $data['tableDetailKelasKuliah'] = $tableDetailKelasKuliah->where('id_kelas_kuliah', $id_kelas_kuliah)->first();
-
+    //     echo '<pre>';
+    //    print_r($data);
+    //    echo '</pre>';exit;
         // Validasi data yang diubah
         $validation =  \Config\Services::validation();
         $validation->setRules([

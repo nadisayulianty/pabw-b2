@@ -13,9 +13,12 @@ class TableRiwayatPangkatDosen extends BaseController
 		echo view('tableriwayatpangkatdosen', $data);
 	}
     public function get_all_data(){
-        $tableriwayatpangkatdosen = new DBtableriwayatpangkatdosen();
-        $data['tableriwayatpangkatdosen'] = $tableriwayatpangkatdosen->findAll();
-        return $data;
+        $model = model(DBtableriwayatpangkatdosen::class);
+
+        return [
+            'tableriwayatpangkatdosen' => $model->paginate(10),
+            'pager' => $model->pager,
+        ];
     }
 
 	public function create()

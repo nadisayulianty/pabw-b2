@@ -16,9 +16,14 @@
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
             <div class="input-group">
-            <form action="<?= base_url('table/tableDetailKelasKuliah/cari') ?>" method="GET" id="searchForm">
-              <span class="input-group-text text-body"><input type="search" id="searchInput" name="search" placeholder="Cari berdasarkan Mata Kuliah" /><i class="fas fa-search" aria-hidden="true"></i></span>
-            </form>
+              <form method="get" action="<?= base_url('table/tableDetailKelasKuliah') ?>" class="d-flex w-100">
+                <div class="col-9 px-1">
+                  <input type="search" class="form-control" name="search" style="border: none; outline: none; box-shadow: none;" placeholder="Search Mata Kuliah" value="<?= esc($search) ?>">
+                </div>
+                <div class="col-3 px-1">
+                  <button type="submit" class="btn bg-gradient-info">Search</button>
+                </div>
+              </form>
             </div>
           </div> 
         </div>
@@ -118,7 +123,9 @@
                   </div>
                 </div>
               </div>
-
+              <div style="display: flex; align-items: end; justify-content: right; padding-right: 10px;">
+                <?php echo $pager->links('default', 'custom_pager') ?>
+              </div>      
               <!-- js delete -->
               <script>
                 function confirmToDelete(element) {

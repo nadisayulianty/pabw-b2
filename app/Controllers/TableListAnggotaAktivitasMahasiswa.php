@@ -13,9 +13,12 @@ class TableListAnggotaAktivitasMahasiswa extends BaseController
 		echo view('tablelistanggotaaktivitasmahasiswa', $data);
 	}
     public function get_all_data(){
-        $tablelistanggotaaktivitasmahasiswa = new DBtablelistanggotaaktivitasmahasiswa();
-        $data['tablelistanggotaaktivitasmahasiswa'] = $tablelistanggotaaktivitasmahasiswa->findAll();
-        return $data;
+        $model = model(DBtablelistanggotaaktivitasmahasiswa::class);
+
+        return [
+            'tablelistanggotaaktivitasmahasiswa' => $model->paginate(10),
+            'pager' => $model->pager,
+        ];
     }
 
 	public function create()
