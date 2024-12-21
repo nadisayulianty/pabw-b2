@@ -154,8 +154,8 @@
 
                         </div>
 
-                        <div class="pagination justify-content-center mt-3">
-                            <?= $pager->links('default', 'bootstrap_pagination'); ?>
+                        <div class="pagination justify-content-end mt-3 me-3">
+                            <?= $pager->links('default', 'custom_pager'); ?>
                         </div>
 
                     </div>
