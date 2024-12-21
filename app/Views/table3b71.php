@@ -144,6 +144,7 @@
                             <label>No</label>
                             <div class="input-group mb-3">
                               <input type="text" class="form-control" name="no" placeholder="<?= $no; ?>" aria-label="no" aria-describedby="email-addon" disabled>
+                              <input type="hidden" name="no" value="<?= $no; ?>">
                             </div>
                             <label>Luaran Penelitian</label>
                             <div class="input-group mb-3">

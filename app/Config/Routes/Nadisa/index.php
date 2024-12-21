@@ -7,12 +7,12 @@ use CodeIgniter\Router\RouteCollection;
  */
 
 // tabel 3b71
-$routes->get('table3b71', 'Table3b71::index');
-$routes->get('table3b71/(:segment)/preview', 'Table3b71::preview/$1');
-$routes->add('table3b71/new', 'Table3b71::create');
-$routes->add('table3b71/(:segment)/edit', 'Table3b71::edit/$1');
-$routes->get('table3b71/(:segment)/delete', 'Table3b71::delete/$1');
-$routes->get('table3b71/cari', 'Table3b71::cari');
+$routes->get('table3b71', 'Table3b71::index', ['filter' => 'permission:read']);
+$routes->get('table3b71/(:segment)/preview', 'Table3b71::preview/$1', ['filter' => 'permission:read']);
+$routes->add('table3b71/new', 'Table3b71::create', ['filter' => 'permission:create']);
+$routes->add('table3b71/(:segment)/edit', 'Table3b71::edit/$1', ['filter' => 'permission:update']);
+$routes->get('table3b71/(:segment)/delete', 'Table3b71::delete/$1', ['filter' => 'permission:delete']);
+$routes->get('table3b71/cari', 'Table3b71::cari', ['filter' => 'permission:read']);
 // tabel 3b72
 $routes->get('table3b72', 'Table3b72::index');
 $routes->get('table3b72/(:segment)/preview', 'Table3b72::preview/$1');

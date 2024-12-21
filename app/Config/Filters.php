@@ -27,6 +27,7 @@ class Filters extends BaseConfig
         'secureheaders' => SecureHeaders::class,
         'usersAuth'     => \App\Filters\UsersAuthFilter::class,
         'roleAccess'    => \App\Filters\RoleAccessFilter::class,
+        'permission'    => \App\Filters\PermissionFilter::class,
     ];
 
     /**
