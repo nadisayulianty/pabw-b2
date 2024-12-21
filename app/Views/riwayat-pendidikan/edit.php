@@ -23,7 +23,7 @@
                     </div>
                     
                     <div class="mb-3">
-                        <label for="nim" class="form-label">Tempat Lahir</label>
+                        <label for="nim" class="form-label">Nim</label>
                         <input type="text" class="form-control" id="nim" name="nim" 
                                value="<?= old('nim', $biodata['nim']) ?>" required>
                     </div>
@@ -35,7 +35,7 @@
                     </div>
                     
                     <div class="mb-3">
-                        <label for="keterangan_keluar" class="form-label">Tempat Lahir</label>
+                        <label for="keterangan_keluar" class="form-label">Keterangan Keluar</label>
                         <input type="text" class="form-control" id="keterangan_keluar" name="keterangan_keluar" 
                                value="<?= old('keterangan_keluar', $biodata['keterangan_keluar']) ?>" required>
                     </div>
