@@ -8,7 +8,11 @@ class ListUjiMahasiswa extends BaseController
 	public function index()
 	{
 		$list_uji_mahasiswa = new DBlistujimahasiswa();
-        $data['list_uji_mahasiswa'] = $list_uji_mahasiswa->findAll();
+        // $data['list_uji_mahasiswa'] = $list_uji_mahasiswa->findAll();
+
+        $data['list_uji_mahasiswa'] = $list_uji_mahasiswa->paginate(5);
+        $data['pager'] = $list_uji_mahasiswa->pager;
+
 		echo view('list_uji_mahasiswa', $data);
 	}
 

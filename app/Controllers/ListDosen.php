@@ -8,7 +8,11 @@ class ListDosen extends BaseController
 	public function index()
 	{
 		$list_dosen = new DBlistdosen();
-        $data['list_dosen'] = $list_dosen->findAll();
+        // $data['list_dosen'] = $list_dosen->findAll();
+
+        $data['list_dosen'] = $list_dosen->paginate(5);
+        $data['pager'] = $list_dosen->pager;
+
 		echo view('list_dosen', $data);
 	}
 
