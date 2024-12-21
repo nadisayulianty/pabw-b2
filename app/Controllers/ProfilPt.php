@@ -10,10 +10,24 @@ class ProfilPt extends BaseController
 {
     public function index()
     {
-        $profilPt = new DBprofilPt();
-        $data['profilPt'] = $profilPt->paginate(5);
-        $data['pager'] = $profilPt->pager;
+        $search = $this->request->getVar('search');
+        $data = $this->GetDataFilter($search);
         echo view('profil-pt', $data);
+    }
+
+    public function GetDataFilter($search = null)
+    {
+        $profilPt = new DBprofilPt();
+
+
+        if ($search) {
+            $profilPt = $profilPt->like('nama_perguruan_tinggi', $search);
+        }
+        $data['profilPt'] = $profilPt->paginate(5);
+
+        $data['pager'] = $profilPt->pager;
+        $data['search'] = $search;
+        return $data;
     }
 
     public function create()
