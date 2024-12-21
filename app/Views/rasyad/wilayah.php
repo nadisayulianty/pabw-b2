@@ -206,45 +206,6 @@
 		$('[name="id_induk_wilayah"]').val('');
 		$('#modalCreate').modal('show');
 	});
-
-	document.addEventListener("DOMContentLoaded", function() {
-		const searchForm = document.getElementById("searchForm");
-		const searchInput = document.getElementById("searchInput");
-		const resultMessage = document.getElementById("resultMessage");
-		const tableBody = document.querySelector(".table tbody");
-
-		function filterRows() {
-			const searchText = searchInput.value.toLowerCase();
-			let foundRows = 0;
-
-			tableBody.querySelectorAll("tr").forEach(function(row, index) {
-				const cells = row.querySelectorAll("td");
-				const kategoriText = cells[4].textContent.toLowerCase(); // Ubah sesuai dengan indeks kolom yang berisi kategori
-
-				if (kategoriText.includes(searchText)) {
-					row.style.display = "";
-					foundRows++;
-				} else {
-					row.style.display = "none";
-				}
-			});
-
-			if (foundRows === 0) {
-				resultMessage.textContent = "Data tidak ditemukan";
-			} else {
-				resultMessage.textContent = "";
-			}
-		}
-
-		searchForm.addEventListener("submit", function(event) {
-			event.preventDefault();
-			filterRows();
-		});
-
-		searchInput.addEventListener("input", filterRows);
-
-		filterRows();
-	});
 </script>
 
 <?= $this->endSection() ?>
