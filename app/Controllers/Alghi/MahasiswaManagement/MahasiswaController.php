@@ -10,8 +10,10 @@ class MahasiswaController extends EnvironmentController
     }
 
     public function index() {
+        $datas = static::$__model->paginate(10);
         return view("alghi/mahasiswaManagement/index",[
-            "datas" => static::$__model->findAll()
+            "datas" => $datas,
+            "pager" => static::$__model->pager,
         ]);
     }
 
