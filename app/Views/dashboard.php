@@ -12,10 +12,6 @@
           <li class="breadcrumb-item text-sm text-white active" aria-current="page">Dashboard</li>
         </ol>
         <h6 class="font-weight-bolder text-white mb-0">Dashboard</h6>
-        <h4> VRISKA CLARINA MEYLANI - 40622100148</h4>
-        <h4> BINTANG WAHYU PRIAWAN - 40622100115</h4>
-        <h4> RIZKY NUGRAHA - 40622100140</h4>
-        <h4> ROBI KURNIAWAN - 40622100189</h4>
       </nav>
       <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
         <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -74,7 +70,6 @@
                     <i class="ni ni-camera-compact text-dark opacity-10"></i>
                   </div>
                   <h5 class="text-white mb-1">Tugas Besar Web Kelompok-9</h5>
-                  <p>Vriska Clarina Meylani, Bintang Wahyu Priawan, Rizky Nugraha, Robi Kurniawan.</p>
                 </div>
               </div>
               <div class="carousel-item h-100" style="background-image: url('img/carousel-2.jpg'); background-size: cover;">
