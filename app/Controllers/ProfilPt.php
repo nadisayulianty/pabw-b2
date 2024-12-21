@@ -11,7 +11,8 @@ class ProfilPt extends BaseController
     public function index()
     {
         $profilPt = new DBprofilPt();
-        $data['profilPt'] = $profilPt->findAll();
+        $data['profilPt'] = $profilPt->paginate(5);
+        $data['pager'] = $profilPt->pager;
         echo view('profil-pt', $data);
     }
 
