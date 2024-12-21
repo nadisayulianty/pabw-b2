@@ -8,7 +8,16 @@ class Perhitungansks extends BaseController
 	public function index()
 	{
 		$perhitungansks = new DBperhitungansks();
-        $data['perhitungansks'] = $perhitungansks->findAll();
+        $search = $this->request->getGet('search');
+        if ($search) {
+            $perhitungansks->like('nama_dosen',$search);
+        }
+        // $data['perhitungansks'] = $perhitungansks->findAll();
+
+        $data['perhitungansks'] = $perhitungansks->paginate(5);
+        $data['pager'] = $perhitungansks->pager;
+        $data['search']=$search;
+
 		echo view('perhitungansks', $data);
 	}
 

@@ -13,12 +13,27 @@ class ListMataKuliah extends BaseController
         // $data['listMataKuliah'] = $listMataKuliah->findAll();
         // echo view('list-mata-kuliah', $data);
 
+        // $listMataKuliah = new DBlistMataKuliah();
+
+        // $data['listMataKuliah'] = $listMataKuliah->paginate(5);
+        // $data['pager'] = $listMataKuliah->pager;
+        $search = $this->request->getVar('search');
+        $data = $this->GetDataFilter($search);
+        echo view('list-mata-kuliah', $data);
+    }
+
+    public function GetDataFilter($search = null)
+    {
         $listMataKuliah = new DBlistMataKuliah();
 
+        if ($search) {
+            $listMataKuliah = $listMataKuliah->like('nama_mata_kuliah', $search);
+        }
         $data['listMataKuliah'] = $listMataKuliah->paginate(5);
-        $data['pager'] = $listMataKuliah->pager;
 
-        echo view('list-mata-kuliah', $data);
+        $data['pager'] = $listMataKuliah->pager;
+        $data['search'] = $search;
+        return $data;
     }
 
     public function create()
