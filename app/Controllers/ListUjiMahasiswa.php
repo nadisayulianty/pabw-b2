@@ -10,8 +10,14 @@ class ListUjiMahasiswa extends BaseController
 		$list_uji_mahasiswa = new DBlistujimahasiswa();
         // $data['list_uji_mahasiswa'] = $list_uji_mahasiswa->findAll();
 
+        $search = $this->request->getGet('search');
+        if ($search) {
+            $list_uji_mahasiswa->like('nama_dosen',$search);
+        }
+
         $data['list_uji_mahasiswa'] = $list_uji_mahasiswa->paginate(5);
         $data['pager'] = $list_uji_mahasiswa->pager;
+        $data['search']=$search;
 
 		echo view('list_uji_mahasiswa', $data);
 	}

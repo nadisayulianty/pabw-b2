@@ -16,8 +16,8 @@
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
             <div class="input-group">
-            <form action="<?= base_url('table/perhitungansks/cari') ?>" method="GET" id="searchForm">
-            <span class="input-group-text text-body"><input type="search" id="searchInput" name="search" placeholder="Cari berdasarkan substansi.." /><i class="fas fa-search" aria-hidden="true"></i></span>
+            <form action="<?= base_url('table/perhitungansks') ?>" method="GET">
+            <span class="input-group-text text-body"><input type="search" id="searchInput" name="search" placeholder="Cari berdasarkan dosen.." value="<?=$search?>" /><i class="fas fa-search" aria-hidden="true"></i></span>
           </form> 
           </div>
           </div> 
@@ -30,7 +30,7 @@
         <div class="col-12">
           <div class="card mb-0">
             <div class="card-header pb-0">
-              <h5>Perhitungan SKS (Rama Rizky Febrian)</h5>
+              <h5>Perhitungan SKS (Rama Rizky Febrian - 230631012)</h5>
               
 
               <button type="button"  class="btn bg-gradient-success btn-block mb-3" data-bs-toggle="modal" data-bs-target="#modalCreate">
@@ -239,44 +239,44 @@
  
   <!-- js search -->
   <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const searchForm = document.getElementById("searchForm");
-      const searchInput = document.getElementById("searchInput");
-      const resultMessage = document.getElementById("resultMessage");
-      const tableBody = document.querySelector(".table tbody");
+    // document.addEventListener("DOMContentLoaded", function() {
+    //   const searchForm = document.getElementById("searchForm");
+    //   const searchInput = document.getElementById("searchInput");
+    //   const resultMessage = document.getElementById("resultMessage");
+    //   const tableBody = document.querySelector(".table tbody");
 
-      function filterRows() {
-        const searchText = searchInput.value.toLowerCase();
-        let foundRows = 0;
+    //   function filterRows() {
+    //     const searchText = searchInput.value.toLowerCase();
+    //     let foundRows = 0;
 
-        tableBody.querySelectorAll("tr").forEach(function(row, index) {
-          const cells = row.querySelectorAll("td");
-          const kategoriText = cells[7].textContent.toLowerCase(); // Ubah sesuai dengan indeks kolom yang berisi kategori
+    //     tableBody.querySelectorAll("tr").forEach(function(row, index) {
+    //       const cells = row.querySelectorAll("td");
+    //       const kategoriText = cells[7].textContent.toLowerCase(); // Ubah sesuai dengan indeks kolom yang berisi kategori
 
-          if (kategoriText.includes(searchText)) {
-            row.style.display = "";
-            foundRows++;
-          } else {
-            row.style.display = "none";
-          }
-        });
+    //       if (kategoriText.includes(searchText)) {
+    //         row.style.display = "";
+    //         foundRows++;
+    //       } else {
+    //         row.style.display = "none";
+    //       }
+    //     });
 
-        if (foundRows === 0) {
-          resultMessage.textContent = "Data tidak ditemukan";
-        } else {
-          resultMessage.textContent = "";
-        }
-      }
+    //     if (foundRows === 0) {
+    //       resultMessage.textContent = "Data tidak ditemukan";
+    //     } else {
+    //       resultMessage.textContent = "";
+    //     }
+    //   }
 
-      searchForm.addEventListener("submit", function(event) {
-        event.preventDefault();
-        filterRows();
-      });
+    //   searchForm.addEventListener("submit", function(event) {
+    //     event.preventDefault();
+    //     filterRows();
+    //   });
 
-      searchInput.addEventListener("input", filterRows);
+    //   searchInput.addEventListener("input", filterRows);
 
-      filterRows();
-    });
+    //   filterRows();
+    // });
   </script>
 
   
