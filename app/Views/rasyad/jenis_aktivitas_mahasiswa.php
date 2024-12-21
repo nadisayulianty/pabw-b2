@@ -27,10 +27,10 @@
 					<div class="card-header pb-0">
 						<div class="d-flex justify-content-between mb-2">
 							<div>
-								<h5>Table jenis keluar</h5>
+								<h5>Table jenis aktivitas mahasiswa</h5>
 								<p>By. 230631013 - Mochamad Rasyad</p>
 							</div>
-							<form action="<?= base_url('table/jenis-keluar') ?>">
+							<form action="<?= base_url('table/jenis-aktivitas-mahasiswa') ?>">
 								<input type="search" name="search" class="form-control" placeholder="Cari..." value="<?= $search ?>" />
 							</form>
 						</div>
@@ -62,29 +62,29 @@
 								<thead>
 									<tr>
 										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">No</th>
-										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">Jenis keluar</th>
-										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">Apa mahasiswa</th>
+										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">Nama jenis aktivitas mahasiswa</th>
+										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">Untuk kampus merdeka</th>
 										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">Aksi</th>
 									</tr>
 								</thead>
 								<tbody>
 									<?php $no = 1;
-									foreach ($jenis_keluar as $row): ?>
+									foreach ($jenis_aktivitas_mahasiswa as $row): ?>
 										<tr>
 											<td class="text-center">
 												<p class="mb-0 text-sm"><?= $no; ?></p>
 											</td>
 											<td class="text-center">
-												<p class="mb-0 text-sm"><?= $row['jenis_keluar'] ?></p>
+												<p class="mb-0 text-sm"><?= $row['nama_jenis_aktivitas_mahasiswa'] ?></p>
 											</td>
 											<td class="text-center">
-												<p class="mb-0 text-sm"><?= $row['apa_mahasiswa'] ?></p>
+												<p class="mb-0 text-sm"><?= $row['untuk_kampus_merdeka'] == 1 ? 'Ya' : 'Tidak' ?></p>
 											</td>
 											<td class="text-center">
 												<a href="#" onclick="handleEdit(this)" data-row='<?php echo json_encode($row) ?>' class="btn btn-success btn-block">
 													Edit
 												</a>
-												<a href="#" data-href="<?= base_url('table/jenis-keluar/' . $row['id_jenis_keluar'] . '/delete') ?>" onclick="confirmToDelete(this)" class="btn btn-danger btn-block" data-bs-toggle="modal" data-bs-target="#confirm-dialog">Hapus</a>
+												<a href="#" data-href="<?= base_url('table/jenis-aktivitas-mahasiswa/' . $row['id_jenis_aktivitas_mahasiswa'] . '/delete') ?>" onclick="confirmToDelete(this)" class="btn btn-danger btn-block" data-bs-toggle="modal" data-bs-target="#confirm-dialog">Hapus</a>
 											</td>
 										</tr>
 									<?php $no++;
@@ -134,18 +134,40 @@
 										<div class="modal-body p-0">
 											<div class="card card-plain">
 												<div class="card-header pb-0 text-left">
-													<h3 class="font-weight-bolder">Form jenis keluar</h3>
+													<h3 class="font-weight-bolder">Form jenis aktivitas mahasiswa</h3>
 												</div>
 												<div class="card-body pb-3">
-													<form action="<?= base_url('table/jenis-keluar/save') ?>" method="post" role="form text-left" id="form-save-wilayah">
-														<input type="hidden" value="" name="id_jenis_keluar">
-														<label>Jenis keluar</label>
+													<form action="<?= base_url('table/jenis-aktivitas-mahasiswa/save') ?>" method="post" role="form text-left" id="form-save-wilayah">
+														<input type="hidden" value="" name="id_jenis_aktivitas_mahasiswa">
+														<label>Nama jenis aktivitas mahasiswa</label>
 														<div class="input-group mb-3">
-															<input type="text" class="form-control" name="jenis_keluar" placeholder="jenis keluar" aria-label="jenis-keluar" aria-describedby="jenis-karyawan-addon">
+															<input type="text" class="form-control" name="nama_jenis_aktivitas_mahasiswa" placeholder="Nama jenis aktivitas mahasiswa" aria-label="jenis-keluar" aria-describedby="jenis-karyawan-addon">
 														</div>
-														<label>Apa mahasiswa</label>
+														<label>Untuk kampus merdeka</label>
 														<div class="input-group mb-3">
-															<input type="text" class="form-control" name="apa_mahasiswa" placeholder="Apa mahasiswa" aria-label="id-negara" min="0" max="1">
+															<div class="form-check form-check-inline">
+																<input
+																	class="form-check-input"
+																	type="radio"
+																	name="untuk_kampus_merdeka"
+																	id="untuk_kampus_merdeka_tidak"
+																	value="n"
+																	checked>
+																<label class="form-check-label" for="untuk_kampus_merdeka_tidak">
+																	Tidak
+																</label>
+															</div>
+															<div class="form-check form-check-inline">
+																<input
+																	class="form-check-input"
+																	type="radio"
+																	name="untuk_kampus_merdeka"
+																	id="untuk_kampus_merdeka_ya"
+																	value="y">
+																<label class="form-check-label" for="untuk_kampus_merdeka_ya">
+																	Ya
+																</label>
+															</div>
 														</div>
 														<button type="submit" class="btn btn-primary btn-lg w-100 mt-4 mb-0">Simpan</button>
 													</form>
@@ -167,57 +189,23 @@
 <script>
 	function handleEdit(element) {
 		const row = JSON.parse(element.getAttribute('data-row'));
-		$('[name="id_jenis_keluar"]').val(row.id_jenis_keluar);
-		$('[name="jenis_keluar"]').val(row.jenis_keluar);
-		$('[name="apa_mahasiswa"]').val(row.apa_mahasiswa);
+		$('[name="id_jenis_aktivitas_mahasiswa"]').val(row.id_jenis_aktivitas_mahasiswa);
+		$('[name="nama_jenis_aktivitas_mahasiswa"]').val(row.nama_jenis_aktivitas_mahasiswa);
+
+		if (row.untuk_kampus_merdeka == 1) {
+			$('#untuk_kampus_merdeka_ya').prop('checked', true);
+		} else {
+			$('#untuk_kampus_merdeka_tidak').prop('checked', true);
+		}
 
 		$('#modalCreate').modal('show');
 	}
 
 	document.getElementById('btn-add').addEventListener('click', function() {
-		document.querySelector('[name="jenis_keluar"]').value = '';
-		document.querySelector('[name="apa_mahasiswa"]').value = '';
-		document.querySelector('[name="id_jenis_keluar"]').value = '';
+		document.querySelector('[name="nama_jenis_aktivitas_mahasiswa"]').value = '';
+		document.querySelector('[name="untuk_kampus_merdeka"]').value = 'n';
+		document.querySelector('[name="id_jenis_aktivitas_mahasiswa"]').value = '';
 		$('#modalCreate').modal('show');
-	});
-
-	document.addEventListener("DOMContentLoaded", function() {
-		const searchForm = document.getElementById("searchForm");
-		const searchInput = document.getElementById("searchInput");
-		const resultMessage = document.getElementById("resultMessage");
-		const tableBody = document.querySelector(".table tbody");
-
-		function filterRows() {
-			const searchText = searchInput.value.toLowerCase();
-			let foundRows = 0;
-
-			tableBody.querySelectorAll("tr").forEach(function(row, index) {
-				const cells = row.querySelectorAll("td");
-				const kategoriText = cells[1].textContent.toLowerCase(); // Ubah sesuai dengan indeks kolom yang berisi kategori
-
-				if (kategoriText.includes(searchText)) {
-					row.style.display = "";
-					foundRows++;
-				} else {
-					row.style.display = "none";
-				}
-			});
-
-			if (foundRows === 0) {
-				resultMessage.textContent = "Data tidak ditemukan";
-			} else {
-				resultMessage.textContent = "";
-			}
-		}
-
-		searchForm.addEventListener("submit", function(event) {
-			event.preventDefault();
-			filterRows();
-		});
-
-		searchInput.addEventListener("input", filterRows);
-
-		filterRows();
 	});
 </script>
 

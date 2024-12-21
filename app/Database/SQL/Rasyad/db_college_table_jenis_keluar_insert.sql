@@ -1,13 +1,13 @@
-INSERT INTO `jenis_keluar` (`id_jenis_keluar`, `jenis_keluar`, `apa_mahasiswa`) VALUES
-(5, 'Putus Studi', 1),
-(3, 'Dikeluarkan', 1),
-(6, 'Lulus', 1),
-(7, 'Meninggal Dunia', 1),
-(8, 'Pindah Kampus', 1),
-(9, 'Keluar Sementara', 1),
-(10, 'Non Aktif', 0),
-(11, 'Pensiun', 0),
-(12, 'Selesai Kontrak', 0),
-(13, 'Bekerja di Luar', 0),
-(14, 'Cuti', 0),
-(15, 'Dinas', 0);
+INSERT INTO `jenis_keluar` (`jenis_keluar`, `apa_mahasiswa`) VALUES
+('Putus Studi', 1),
+('Dikeluarkan', 1),
+('Lulus', 1),
+('Meninggal Dunia', 1),
+('Pindah Kampus', 1),
+('Keluar Sementara', 1),
+('Non Aktif', 0),
+('Pensiun', 0),
+('Selesai Kontrak', 0),
+('Bekerja di Luar', 0),
+('Cuti', 0),
+('Dinas', 0);

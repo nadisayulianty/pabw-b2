@@ -41,6 +41,19 @@ class Wilayah extends BaseController
             'id_negara' => 'required',
             'nama_wilayah' => 'required',
             'id_induk_wilayah' => 'required'
+        ], [
+            'id_level_wilayah' => [
+                'required' => 'Level wilayah harus diisi'
+            ],
+            'id_negara' => [
+                'required' => 'Negara harus diisi'
+            ],
+            'nama_wilayah' => [
+                'required' => 'Nama wilayah harus diisi'
+            ],
+            'id_induk_wilayah' => [
+                'required' => 'Induk wilayah harus diisi'
+            ]
         ]);
 
         $isDataValid = $validation->withRequest($this->request)->run();
@@ -63,10 +76,7 @@ class Wilayah extends BaseController
             return redirect()->to('table/wilayah')->with('success', 'Data berhasil disimpan');
         }
 
-        $data = $this->getWilayah();
-        $data['errors'] = $errors;
-
-        echo view('rasyad/wilayah', $data);
+        echo redirect()->to('table/wilayah')->with('errors', $errors);
     }
 
     public function delete($id)
