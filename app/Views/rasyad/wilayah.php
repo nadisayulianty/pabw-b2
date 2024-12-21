@@ -31,7 +31,7 @@
 								<p>By. 230631013 - Mochamad Rasyad</p>
 							</div>
 							<form action="<?= base_url('table/wilayah') ?>">
-								<input type="search" name="search" class="form-control" placeholder="Cari..." value="<?= $search ?>" />
+								<input type="search" name="search" class="form-control" placeholder="Cari wilayah..." value="<?= $search ?>" />
 							</form>
 						</div>
 						<hr>
@@ -71,36 +71,42 @@
 									</tr>
 								</thead>
 								<tbody>
-									<?php $no = 1;
-									foreach ($wilayah as $row): ?>
+									<?php if (empty($wilayah)) : ?>
 										<tr>
-											<td class="text-center">
-												<p class="mb-0 text-sm"><?= $no; ?></p>
-											</td>
-											<td class="text-center">
-												<p class="mb-0 text-sm"><?= $row['id_level_wilayah'] ?></p>
-											</td>
-											<td class="text-center">
-												<p class="mb-0 text-sm"><?= $row['id_wilayah'] ?></p>
-											</td>
-											<td class="text-center">
-												<p class="mb-0 text-sm"><?= $row['id_negara'] ?></p>
-											</td>
-											<td class="text-center">
-												<p class="mb-0 text-sm"><?= $row['nama_wilayah'] ?></p>
-											</td>
-											<td class="text-center">
-												<p class="mb-0 text-sm"><?= $row['id_induk_wilayah'] ?></p>
-											</td>
-											<td class="text-center">
-												<a href="#" onclick="handleEdit(this)" data-row='<?php echo json_encode($row) ?>' class="btn btn-success btn-block">
-													Edit
-												</a>
-												<a href="#" data-href="<?= base_url('table/wilayah/' . $row['id_wilayah'] . '/delete') ?>" onclick="confirmToDelete(this)" class="btn btn-danger btn-block" data-bs-toggle="modal" data-bs-target="#confirm-dialog">Hapus</a>
-											</td>
+											<td colspan="7" class="text-center">Data tidak ditemukan</td>
 										</tr>
-									<?php $no++;
-									endforeach ?>
+									<?php else: ?>
+										<?php $no = 1;
+										foreach ($wilayah as $row): ?>
+											<tr>
+												<td class="text-center">
+													<p class="mb-0 text-sm"><?= $no; ?></p>
+												</td>
+												<td class="text-center">
+													<p class="mb-0 text-sm"><?= $row['id_level_wilayah'] ?></p>
+												</td>
+												<td class="text-center">
+													<p class="mb-0 text-sm"><?= $row['id_wilayah'] ?></p>
+												</td>
+												<td class="text-center">
+													<p class="mb-0 text-sm"><?= $row['id_negara'] ?></p>
+												</td>
+												<td class="text-center">
+													<p class="mb-0 text-sm"><?= $row['nama_wilayah'] ?></p>
+												</td>
+												<td class="text-center">
+													<p class="mb-0 text-sm"><?= $row['id_induk_wilayah'] ?></p>
+												</td>
+												<td class="text-center">
+													<a href="#" onclick="handleEdit(this)" data-row='<?php echo json_encode($row) ?>' class="btn btn-success btn-block">
+														Edit
+													</a>
+													<a href="#" data-href="<?= base_url('table/wilayah/' . $row['id_wilayah'] . '/delete') ?>" onclick="confirmToDelete(this)" class="btn btn-danger btn-block" data-bs-toggle="modal" data-bs-target="#confirm-dialog">Hapus</a>
+												</td>
+											</tr>
+										<?php $no++;
+										endforeach ?>
+									<?php endif; ?>
 								</tbody>
 							</table>
 

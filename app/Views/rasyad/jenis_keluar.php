@@ -31,7 +31,7 @@
 								<p>By. 230631013 - Mochamad Rasyad</p>
 							</div>
 							<form action="<?= base_url('table/jenis-keluar') ?>">
-								<input type="search" name="search" class="form-control" placeholder="Cari..." value="<?= $search ?>" />
+								<input type="search" name="search" class="form-control" placeholder="Cari jenis keluar..." value="<?= $search ?>" />
 							</form>
 						</div>
 						<hr>
@@ -68,27 +68,33 @@
 									</tr>
 								</thead>
 								<tbody>
-									<?php $no = 1;
-									foreach ($jenis_keluar as $row): ?>
+									<?php if (empty($jenis_keluar)): ?>
 										<tr>
-											<td class="text-center">
-												<p class="mb-0 text-sm"><?= $no; ?></p>
-											</td>
-											<td class="text-center">
-												<p class="mb-0 text-sm"><?= $row['jenis_keluar'] ?></p>
-											</td>
-											<td class="text-center">
-												<p class="mb-0 text-sm"><?= $row['apa_mahasiswa'] ?></p>
-											</td>
-											<td class="text-center">
-												<a href="#" onclick="handleEdit(this)" data-row='<?php echo json_encode($row) ?>' class="btn btn-success btn-block">
-													Edit
-												</a>
-												<a href="#" data-href="<?= base_url('table/jenis-keluar/' . $row['id_jenis_keluar'] . '/delete') ?>" onclick="confirmToDelete(this)" class="btn btn-danger btn-block" data-bs-toggle="modal" data-bs-target="#confirm-dialog">Hapus</a>
-											</td>
+											<td colspan="4" class="text-center">Data tidak ditemukan</td>
 										</tr>
-									<?php $no++;
-									endforeach ?>
+									<?php else: ?>
+										<?php $no = 1;
+										foreach ($jenis_keluar as $row): ?>
+											<tr>
+												<td class="text-center">
+													<p class="mb-0 text-sm"><?= $no; ?></p>
+												</td>
+												<td class="text-center">
+													<p class="mb-0 text-sm"><?= $row['jenis_keluar'] ?></p>
+												</td>
+												<td class="text-center">
+													<p class="mb-0 text-sm"><?= $row['apa_mahasiswa'] ?></p>
+												</td>
+												<td class="text-center">
+													<a href="#" onclick="handleEdit(this)" data-row='<?php echo json_encode($row) ?>' class="btn btn-success btn-block">
+														Edit
+													</a>
+													<a href="#" data-href="<?= base_url('table/jenis-keluar/' . $row['id_jenis_keluar'] . '/delete') ?>" onclick="confirmToDelete(this)" class="btn btn-danger btn-block" data-bs-toggle="modal" data-bs-target="#confirm-dialog">Hapus</a>
+												</td>
+											</tr>
+										<?php $no++;
+										endforeach ?>
+									<?php endif; ?>
 								</tbody>
 							</table>
 							<!-- js message data tidak ditemukan  -->
