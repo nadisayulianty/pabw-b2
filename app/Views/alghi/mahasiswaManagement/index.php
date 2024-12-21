@@ -110,6 +110,10 @@
                                     </tbody>
                                 </table>
 
+                                <div style="gap:2px;margin-top: 5px;margin-left: 10px;">
+                                    <?= $pager->links(); ?>
+                                </div>
+
                                 <!-- js message data tidak ditemukan  -->
                                 <div id="resultMessage" class="result-message text-center"></div>
 

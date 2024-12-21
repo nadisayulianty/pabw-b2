@@ -42,7 +42,6 @@
                                 <table class="table table-hover align-items-center mb-0">
                                     <thead>
                                         <tr>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">No</th>
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Asal Data</th>
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">ID Aktivitas</th>
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Program MBKM</th>
@@ -60,9 +59,6 @@
                                         <?php $no = 1; ?>
                                         <?php foreach ($datas as $data): ?>
                                             <tr>
-                                                <td class="text-center">
-                                                    <p class="mb-0 text-sm"><?= $no; ?></p>
-                                                </td>
                                                 <td class="text-center">
                                                     <p class="mb-0 text-sm"><?= $data['asal_data'] ?></p>
                                                 </td>
@@ -113,6 +109,11 @@
                                         <?php endforeach; ?>
                                     </tbody>
                                 </table>
+
+                                <div style="gap:2px;margin-top: 5px;margin-left: 10px;">
+                                    <?= $pager->links(); ?>
+                                </div>
+
 
 
                                 <!-- js message data tidak ditemukan  -->
