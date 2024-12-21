@@ -1,3 +1,7 @@
+<?php
+  $roleId = session()->get('role_id');
+?>
+
 <?= $this->extend('layout/admin/layout') ?>
 
 <?= $this->section('content') ?>
@@ -32,10 +36,12 @@
           <div class="card-header pb-0">
             <h5>Tabel 3.b.7 PKM oleh DTPS</h5>
             <h6>Bagian-1 HKI (Paten, Paten Sederhana)</h6>
-            <!-- button tambah -->
-            <button type="button" class="btn bg-gradient-success btn-block mb-3" data-bs-toggle="modal" data-bs-target="#modalCreate">
-              Tambah Data
-            </button>
+            <?php if (has_permission($roleId, 'create')) { ?>
+              <!-- button tambah -->
+              <button type="button" class="btn bg-gradient-success btn-block mb-3" data-bs-toggle="modal" data-bs-target="#modalCreate">
+                Tambah Data
+              </button>
+            <?php } ?>
             <br>
           </div>
           <div class="card-body px-0 pt-0 pb-2">
@@ -70,10 +76,14 @@
 
                       <td class="text-center">
                         <!-- aksi -->
-                        <a href="<?= base_url('table/table3b71/' . $table3b71['no'] . '/edit') ?>" class="btn bg-gradient-info btn-block">
-                          Edit
-                        </a>
-                        <a href="#" data-href="<?= base_url('table/table3b71/' . $table3b71['no'] . '/delete') ?>" onclick="confirmToDelete(this)" class="btn bg-gradient-danger btn-block" data-bs-toggle="modal" data-bs-target="#confirm-dialog">Hapus</a>
+                        <?php if (has_permission($roleId, 'update')) { ?>
+                          <a href="<?= base_url('table/table3b71/' . $table3b71['no'] . '/edit') ?>" class="btn bg-gradient-info btn-block">
+                            Edit
+                          </a>
+                        <?php } ?>
+                        <?php if (has_permission($roleId, 'delete')) { ?>
+                          <a href="#" data-href="<?= base_url('table/table3b71/' . $table3b71['no'] . '/delete') ?>" onclick="confirmToDelete(this)" class="btn bg-gradient-danger btn-block" data-bs-toggle="modal" data-bs-target="#confirm-dialog">Hapus</a>
+                        <?php } ?>
                       </td>
                       <!-- ------------------------------------ -->
                     </tr>

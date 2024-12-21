@@ -57,4 +57,13 @@ abstract class BaseController extends Controller
 
         // E.g.: $this->session = \Config\Services::session();
     }
+
+    protected function checkPermission(string $action)
+    {
+        $hasPermission = has_permission(session()->get('role_id'), $action);
+        if (!$hasPermission) {
+            session()->setFlashdata('notice', 'Anda tidak memiliki akses pada akses ini.');
+            return redirect()->to(base_url('dashboard'));
+        }
+    }
 }

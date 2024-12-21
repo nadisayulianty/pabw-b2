@@ -40,7 +40,7 @@
           ?>
 
           <?php foreach ($menus as $menu): ?>
-              <?php if (in_array($menu['nama'], $akses)): ?>
+              <?php if (in_array($menu['nama'], $akses)  && has_permission($roleId, 'read')): ?>
                   <li><a class="dropdown-item" href="<?= base_url($menu['route']) ?>"> <?= $menu['nama'] ?> </a></li>
               <?php endif; ?>
           <?php endforeach; ?>
@@ -53,6 +53,14 @@
               <i class="ni ni-key-25 text-success text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1">Role Access</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="<?= base_url('role-permissions') ?>">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-key-25 text-success text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Role Permissions</span>
           </a>
         </li>
       <?php } ?>

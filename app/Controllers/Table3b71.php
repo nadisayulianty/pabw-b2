@@ -9,7 +9,7 @@ class Table3b71 extends BaseController
 	{
 		$table3b71 = new DBtable3b71();
         $data['table3b71'] = $table3b71->findAll();
-		echo view('table3b71', $data);
+		return $this->checkPermission('read') ?? view('table3b71', $data);
 	}
 
 	public function create()
@@ -32,7 +32,7 @@ class Table3b71 extends BaseController
         }
 		
         // tampilkan form create
-        echo view('table3b71');
+        return view('table3b71');
     }
 
 	public function edit($no)

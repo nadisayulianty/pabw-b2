@@ -20,6 +20,9 @@ $routes->get('/logout', 'Login::logout');
 $routes->get('/role-access', 'RoleMenu::index');
 $routes->post('/save-role-access', 'RoleMenu::update');
 
+$routes->get('/role-permissions', 'RolePermission::index');
+$routes->post('/save-role-permissions', 'RolePermission::update');
+
 $routes->get("/impersonate-sql",'Sql::impersonate');
 
 // grup routes table
