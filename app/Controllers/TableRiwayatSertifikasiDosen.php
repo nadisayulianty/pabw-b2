@@ -13,9 +13,12 @@ class TableRiwayatSertifikasiDosen extends BaseController
 		echo view('tableriwayatsertifikasidosen', $data);
 	}
     public function get_all_data(){
-        $tableriwayatsertifikasidosen = new DBtableriwayatsertifikasidosen();
-        $data['tableriwayatsertifikasidosen'] = $tableriwayatsertifikasidosen->findAll();
-        return $data;
+        $model = model(DBtableriwayatsertifikasidosen::class);
+
+        return [
+            'tableriwayatsertifikasidosen' => $model->paginate(10),
+            'pager' => $model->pager,
+        ];
     }
 
 	public function create()
