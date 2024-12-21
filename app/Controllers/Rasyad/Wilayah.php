@@ -18,9 +18,16 @@ class Wilayah extends BaseController
         $model = model(WilayahModel::class);
         $model->orderBy('id_wilayah', 'DESC');
 
+        $search = $this->request->getGet('search');
+
+        if ($search) {
+            $model->like('nama_wilayah', $search);
+        }
+
         return [
             'wilayah' => $model->paginate(5),
-            'pager' => $model->pager
+            'pager' => $model->pager,
+            'search' => $search
         ];
     }
 

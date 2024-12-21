@@ -18,9 +18,16 @@ class JenisKeluar extends BaseController
         $model = model(ModelsJenisKeluar::class);
         $model->orderBy('id_jenis_keluar', 'DESC');
 
+        $search = $this->request->getGet('search');
+
+        if ($search) {
+            $model->like('jenis_keluar', $search);
+        }
+
         return [
             'jenis_keluar' => $model->paginate(5),
-            'pager' => $model->pager
+            'pager' => $model->pager,
+            'search' => $search
         ];
     }
 

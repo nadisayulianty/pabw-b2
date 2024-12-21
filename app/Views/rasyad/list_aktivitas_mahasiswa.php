@@ -15,11 +15,6 @@
 			</nav>
 			<div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
 				<div class="ms-md-auto pe-md-3 d-flex align-items-center">
-					<div class="input-group">
-						<form action="<?= base_url('table/table3b71/cari') ?>" method="GET" id="searchForm">
-							<span class="input-group-text text-body"><input type="search" id="searchInput" name="search" placeholder="Cari berdasarkan judul.." /><i class="fas fa-search" aria-hidden="true"></i></span>
-						</form>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -30,10 +25,21 @@
 			<div class="col-12">
 				<div class="card mb-0">
 					<div class="card-header pb-0">
-						<h5>Table list aktivitas mahasiswa</h5>
-						<button type="button" class="btn btn-primary btn-block mb-3" id="btn-add">
-							Tambah Data
-						</button>
+						<div class="d-flex justify-content-between mb-2">
+							<div>
+								<h5>Table list aktivitas mahasiswa</h5>
+								<p>By. 230631013 - Mochamad Rasyad</p>
+							</div>
+							<form action="<?= base_url('table/list-aktivitas-mahasiswa') ?>">
+								<input type="search" name="search" class="form-control" placeholder="Cari..." value="<?= $search ?>" />
+							</form>
+						</div>
+						<hr>
+						<div class="d-flex justify-content-end">
+							<button type="button" class="btn btn-primary btn-block mb-3" id="btn-add">
+								Tambah Data
+							</button>
+						</div>
 						<?php if (session('success')): ?>
 							<div class="alert alert-success" role="alert">
 								<?= session('success') ?>

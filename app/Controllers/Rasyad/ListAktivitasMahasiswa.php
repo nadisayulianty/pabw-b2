@@ -18,9 +18,16 @@ class ListAktivitasMahasiswa extends BaseController
         $model = model(ModelsListAktivitasMahasiswa::class);
         $model->orderBy('id_aktivitas', 'DESC');
 
+        $search = $this->request->getGet('search');
+        if (!empty($search)) {
+            $model->like('nama_jenis_aktivitas', $search)
+                ->orLike('nm_asaldata', $search);
+        }
+
         return [
             'list_aktivitas_mahasiswa' => $model->paginate(5),
-            'pager' => $model->pager
+            'pager' => $model->pager,
+            'search' => $search
         ];
     }
 
