@@ -101,7 +101,7 @@ class Exceptions extends BaseConfig
      */
     public function handler(int $statusCode, Throwable $exception)
     {
-        if(isset($_SERVER['NADISA_MODE'])) {
+        if(isset($_SERVER['NADISA_MODE']) && $_SERVER['NADISA_MODE']) {
             $handler = new MyCustomErrorHandler();
             return $handler->handleException($exception);
         }else {
