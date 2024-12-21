@@ -16,8 +16,8 @@
       <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
         <div class="ms-md-auto pe-md-3 d-flex align-items-center">
           <div class="input-group">
-            <form action="<?= base_url('table/tablelistanggotaaktivitasmahasiswa/cari') ?>" method="GET" id="searchForm">
-              <span class="input-group-text text-body"><input type="search" id="searchInput" name="search" placeholder="Cari Berdasarkan Nama" /><i class="fas fa-search" aria-hidden="true"></i></span>
+            <form action="<?= base_url('table/tablelistanggotaaktivitasmahasiswa') ?>" method="GET" id="searchForm">
+              <span class="input-group-text text-body"><input type="search" id="searchInput" name="search" placeholder="Cari Berdasarkan Nama"  value="<?= $search; ?>" /><i class="fas fa-search" aria-hidden="true"></i></span>
             </form>
           </div>
         </div>
@@ -176,7 +176,10 @@
                             </div>
                             <label>Status Sync</label>
                             <div class="input-group mb-3">
-                              <input type="text" class="form-control" name="status_sync" placeholder="Status Sync">
+                              <select name="status_sync" id="status_sync" class="form-control">
+                                <option value="sudah_sync">Sudah sync</option>
+                                <option value="belum_sync">Belum sync</option>
+                              </select>
                             </div>
                             <div class="text-center">
                             </div>
@@ -205,44 +208,7 @@
 
   <!-- js search -->
   <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const searchForm = document.getElementById("searchForm");
-      const searchInput = document.getElementById("searchInput");
-      const resultMessage = document.getElementById("resultMessage");
-      const tableBody = document.querySelector(".table tbody");
-
-      function filterRows() {
-        const searchText = searchInput.value.toLowerCase();
-        let foundRows = 0;
-
-        tableBody.querySelectorAll("tr").forEach(function(row, index) {
-          const cells = row.querySelectorAll("td");
-          const kategoriText = cells[5].textContent.toLowerCase(); // Ubah sesuai dengan indeks kolom yang berisi kategori
-
-          if (kategoriText.includes(searchText)) {
-            row.style.display = "";
-            foundRows++;
-          } else {
-            row.style.display = "none";
-          }
-        });
-
-        if (foundRows === 0) {
-          resultMessage.textContent = "Data tidak ditemukan";
-        } else {
-          resultMessage.textContent = "";
-        }
-      }
-
-      searchForm.addEventListener("submit", function(event) {
-        event.preventDefault();
-        filterRows();
-      });
-
-      searchInput.addEventListener("input", filterRows);
-
-      filterRows();
-    });
+    
   </script>
 
 

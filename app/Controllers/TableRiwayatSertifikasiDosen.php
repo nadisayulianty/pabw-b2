@@ -14,10 +14,14 @@ class TableRiwayatSertifikasiDosen extends BaseController
 	}
     public function get_all_data(){
         $model = model(DBtableriwayatsertifikasidosen::class);
-
+        $search = $this->request->getGet('search');
+        if ($search) {
+            $model->like('nama_dosen', $search);
+        }
         return [
-            'tableriwayatsertifikasidosen' => $model->paginate(10),
+            'tableriwayatsertifikasidosen' => $model->paginate(5),
             'pager' => $model->pager,
+            'search' => $search
         ];
     }
 

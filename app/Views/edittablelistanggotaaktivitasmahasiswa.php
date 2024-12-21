@@ -61,8 +61,10 @@
                         </div>
                         <div class="form-group mb-3">
                             <label for="status_sync">Status Sync</label>
-                            <input type="text" name="status_sync" class="form-control" 
-                                placeholder="status_sync" value="<?= $tablelistanggotaaktivitasmahasiswa['status_sync'] ?>" required>
+                            <select name="status_sync" id="status_sync" class="form-control" required>
+                                <option value="sudah_sync">Sudah sync</option>
+                                <option value="belum_sync">Belum sync</option>
+                              </select>
                         </div>   
 
                         <div class="form-group">
