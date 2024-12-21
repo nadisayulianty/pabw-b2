@@ -1,0 +1,37 @@
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `riwayatpangkatdosen`
+--
+
+CREATE TABLE `riwayatpangkatdosen` (
+  `id_dosen` varchar(36) NOT NULL,
+  `nidn` varchar(20) NOT NULL,
+  `nama_dosen` varchar(255) DEFAULT NULL,
+  `id_pangkat_golongan` varchar(36) DEFAULT NULL,
+  `nama_pangkat_golongan` varchar(255) DEFAULT NULL,
+  `sk_pangkat` varchar(255) DEFAULT NULL,
+  `tanggal_sk_pangkat` date DEFAULT NULL,
+  `mulai_sk_pangkat` date DEFAULT NULL,
+  `masa_kerja_dalam_tahun` int(11) DEFAULT NULL,
+  `masa_kerja_dalam_bulan` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `riwayatpangkatdosen`
+--
+
+INSERT IGNORE INTO `riwayatpangkatdosen` (`id_dosen`, `nidn`, `nama_dosen`, `id_pangkat_golongan`, `nama_pangkat_golongan`, `sk_pangkat`, `tanggal_sk_pangkat`, `mulai_sk_pangkat`, `masa_kerja_dalam_tahun`, `masa_kerja_dalam_bulan`) VALUES
+('8dcdd0ea-cb44-4028-9cc7-86f8e847b55f', '9990231000', 'asep', 'a65568ec-733c-44a8-aa8c-c59f525faa32', 'Penata Tk. I', '137051/A4.3/KP/2014', '2014-09-29', '2015-01-01', 14, 4),
+('8dcdd0ea-cb44-4028-9cc7-86f8e847b55f', '9990931000', 'dani', 'b65ab11e-7eb2-482a-8765-310bb775b3ed', 'Penata', '-', '1970-01-01', '1970-01-01', 0, 0),
+('ASD098762110021', '32411441244994212', 'Asep Wahyu', 'JK123454577987655000045689', 'Asisten Ahli', 'SK75449022', '2021-04-11', '2021-05-11', 1, 4),
+('ASD09876211331', '324134551234994212', 'Suherlan Jaelani', 'JK12345457798765500004567', 'Kaprodi', 'SK80999023', '2024-04-14', '2024-05-02', 1, 12),
+('DFG89321023678', '0827349221239044402', 'Ahmad Sumardji', 'JK09821777384350003921122335', 'Guru Besar', 'SK21344311', '2021-02-17', '2021-01-29', 111, 120),
+('DSN0987654321', '09876543210987654321', 'Siti Aisyah', 'PG098765432109876543210987654321', 'Lektor Kepala', 'SK654321', '2022-05-15', '2022-06-01', 10, 2),
+('DSN1234567890', '12345678901234567890', 'Ahmad Suryadi', 'PG123456789012345678901234567890', 'Guru Besar', 'SK123456', '2023-01-10', '2023-02-01', 5, 6),
+('DSN4321098765', '67890123456789012345', 'Maya Susanti', 'PG432109876512345678901234567890', 'Kaprodi', 'SK432109', '2022-02-20', '2022-03-01', 9, 4),
+('DSN6543219870', '12345678901234567892', 'Mia Nurhasanah', 'PG654321987012345678901234567890', 'Dekan', 'SK654321', '2021-03-10', '2021-04-01', 7, 5),
+('DSN7654321980', '09876543210987654321', 'Budi Santoso', 'PG765432198012345678901234567890', 'Wakil Lektor', 'SK765432', '2019-07-15', '2019-08-01', 12, 3),
+('DSN8765432100', '12345098761234567890', 'Siti Marlina', 'PG876543210012345678901234567890', 'Guru Besar', 'SK876543', '2018-09-12', '2018-10-01', 15, 2),
+('DSN9876543210', '54321098765432109876', 'Agus Haryanto', 'PG987654321012345678901234567890', 'Asisten Ahli', 'SK987654', '2020-11-10', '2020-12-01', 3, 6);
