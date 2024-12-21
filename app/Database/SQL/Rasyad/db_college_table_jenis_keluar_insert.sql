@@ -1,4 +1,4 @@
-INSERT IGNORE INTO `jenis_keluar` (`id_jenis_keluar`, `jenis_keluar`, `apa_mahasiswa`) VALUES
+INSERT INTO `jenis_keluar` (`id_jenis_keluar`, `jenis_keluar`, `apa_mahasiswa`) VALUES
 (5, 'Putus Studi', 1),
 (3, 'Dikeluarkan', 1),
 (6, 'Lulus', 1),
