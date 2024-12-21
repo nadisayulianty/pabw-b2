@@ -76,7 +76,7 @@ class Wilayah extends BaseController
             return redirect()->to('table/wilayah')->with('success', 'Data berhasil disimpan');
         }
 
-        echo redirect()->to('table/wilayah')->with('errors', $errors);
+        return redirect()->to('table/wilayah')->with('errors', $errors);
     }
 
     public function delete($id)
