@@ -8,7 +8,11 @@ class Tablembd extends BaseController
 	public function index()
 	{
 		$mbd = new DBmbd();
-        $data['mbd'] = $mbd->findAll();
+        $data['mbd'] = $mbd->paginate(5);
+        $data['pager'] = $mbd->pager;
+        $data['total'] = $mbd->countAll();
+        $data['page'] = $this->request->getVar('page_mbd') ? $this->request->getVar('page_mbd') : 1;
+        $data['perPage'] = 5;
         
         return view('mbd', $data);
     }

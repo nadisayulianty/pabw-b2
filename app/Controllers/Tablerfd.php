@@ -8,7 +8,11 @@ class Tablerfd extends BaseController
 	public function index()
 	{
 		$rfd = new DBrfd();
-        $data['rfd'] = $rfd->findAll();
+        $data['rfd'] = $rfd->paginate(5);
+        $data['pager'] = $rfd->pager;
+        $data['total'] = $rfd->countAll();
+        $data['page'] = $this->request->getVar('page_rfd') ? $this->request->getVar('page_rfd') : 1;
+        $data['perPage'] = 5;
         
         return view('rfd', $data);
     }

@@ -8,10 +8,16 @@ class Tableperiode extends BaseController
 	public function index()
 	{
 		$periode = new DBperiode();
-        $data['periode'] = $periode->findAll();
+        $data['periode'] = $periode->paginate(5);
+        $data['pager'] = $periode->pager;
+        $data['total'] = $periode->countAll();
+        $data['page'] = $this->request->getVar('page_periode') ? $this->request->getVar('page_periode') : 1;
+        $data['perPage'] = 5;
         
         return view('periode', $data);
     }
+
+
 
 	public function create()
     {
