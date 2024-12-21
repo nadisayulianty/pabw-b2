@@ -39,6 +39,14 @@ class JenisKeluar extends BaseController
             'id_jenis_keluar' => 'permit_empty|numeric',
             'jenis_keluar' => 'required',
             'apa_mahasiswa' => 'required|numeric'
+        ], [
+            'jenis_keluar' => [
+                'required' => 'Jenis Keluar harus diisi'
+            ],
+            'apa_mahasiswa' => [
+                'required' => 'Apa Mahasiswa harus diisi',
+                'numeric' => 'Apa Mahasiswa harus berupa angka'
+            ]
         ]);
 
         $isDataValid = $validation->withRequest($this->request)->run();
@@ -60,10 +68,7 @@ class JenisKeluar extends BaseController
             return redirect()->to('table/jenis-keluar')->with('success', 'Data berhasil disimpan');
         }
 
-        $data = $this->getJenisKeluar();
-        $data['errors'] = $errors;
-
-        echo view('rasyad/jenis_keluar', $data);
+        return redirect()->to('table/jenis-keluar')->with('errors', $errors);
     }
 
     public function delete($id)

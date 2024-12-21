@@ -27,10 +27,10 @@
 					<div class="card-header pb-0">
 						<div class="d-flex justify-content-between mb-2">
 							<div>
-								<h5>Table wilayah</h5>
+								<h5>Table jenis aktivitas mahasiswa</h5>
 								<p>By. 230631013 - Mochamad Rasyad</p>
 							</div>
-							<form action="<?= base_url('table/wilayah') ?>">
+							<form action="<?= base_url('table/jenis-aktivitas-mahasiswa') ?>">
 								<input type="search" name="search" class="form-control" placeholder="Cari..." value="<?= $search ?>" />
 							</form>
 						</div>
@@ -62,48 +62,35 @@
 								<thead>
 									<tr>
 										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">No</th>
-										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">ID level wilayah</th>
-										<th class="text-center text-uppercase text-xxs font-weight-bolder ">ID wilayah</th>
-										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">ID negara</th>
-										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">Nama wilayah</th>
-										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">ID induk wilayah</th>
+										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">Nama jenis aktivitas mahasiswa</th>
+										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">Untuk kampus merdeka</th>
 										<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">Aksi</th>
 									</tr>
 								</thead>
 								<tbody>
 									<?php $no = 1;
-									foreach ($wilayah as $row): ?>
+									foreach ($jenis_aktivitas_mahasiswa as $row): ?>
 										<tr>
 											<td class="text-center">
 												<p class="mb-0 text-sm"><?= $no; ?></p>
 											</td>
 											<td class="text-center">
-												<p class="mb-0 text-sm"><?= $row['id_level_wilayah'] ?></p>
+												<p class="mb-0 text-sm"><?= $row['nama_jenis_aktivitas_mahasiswa'] ?></p>
 											</td>
 											<td class="text-center">
-												<p class="mb-0 text-sm"><?= $row['id_wilayah'] ?></p>
-											</td>
-											<td class="text-center">
-												<p class="mb-0 text-sm"><?= $row['id_negara'] ?></p>
-											</td>
-											<td class="text-center">
-												<p class="mb-0 text-sm"><?= $row['nama_wilayah'] ?></p>
-											</td>
-											<td class="text-center">
-												<p class="mb-0 text-sm"><?= $row['id_induk_wilayah'] ?></p>
+												<p class="mb-0 text-sm"><?= $row['untuk_kampus_merdeka'] == 1 ? 'Ya' : 'Tidak' ?></p>
 											</td>
 											<td class="text-center">
 												<a href="#" onclick="handleEdit(this)" data-row='<?php echo json_encode($row) ?>' class="btn btn-success btn-block">
 													Edit
 												</a>
-												<a href="#" data-href="<?= base_url('table/wilayah/' . $row['id_wilayah'] . '/delete') ?>" onclick="confirmToDelete(this)" class="btn btn-danger btn-block" data-bs-toggle="modal" data-bs-target="#confirm-dialog">Hapus</a>
+												<a href="#" data-href="<?= base_url('table/jenis-aktivitas-mahasiswa/' . $row['id_jenis_aktivitas_mahasiswa'] . '/delete') ?>" onclick="confirmToDelete(this)" class="btn btn-danger btn-block" data-bs-toggle="modal" data-bs-target="#confirm-dialog">Hapus</a>
 											</td>
 										</tr>
 									<?php $no++;
 									endforeach ?>
 								</tbody>
 							</table>
-
 							<!-- js message data tidak ditemukan  -->
 							<div id="resultMessage" class="result-message text-center"></div>
 
@@ -147,26 +134,40 @@
 										<div class="modal-body p-0">
 											<div class="card card-plain">
 												<div class="card-header pb-0 text-left">
-													<h3 class="font-weight-bolder">Form wilayah</h3>
+													<h3 class="font-weight-bolder">Form jenis aktivitas mahasiswa</h3>
 												</div>
 												<div class="card-body pb-3">
-													<form action="<?= base_url('table/wilayah/save') ?>" method="post" role="form text-left" id="form-save-wilayah">
-														<input type="hidden" value="" name="id_wilayah">
-														<label>ID level wilayah</label>
+													<form action="<?= base_url('table/jenis-aktivitas-mahasiswa/save') ?>" method="post" role="form text-left" id="form-save-wilayah">
+														<input type="hidden" value="" name="id_jenis_aktivitas_mahasiswa">
+														<label>Nama jenis aktivitas mahasiswa</label>
 														<div class="input-group mb-3">
-															<input type="text" class="form-control" name="id_level_wilayah" placeholder="ID level wilayah" aria-label="id-level-wilayah" aria-describedby="id-level-wilayah-addon">
+															<input type="text" class="form-control" name="nama_jenis_aktivitas_mahasiswa" placeholder="Nama jenis aktivitas mahasiswa" aria-label="jenis-keluar" aria-describedby="jenis-karyawan-addon">
 														</div>
-														<label>ID negara</label>
+														<label>Untuk kampus merdeka</label>
 														<div class="input-group mb-3">
-															<input type="text" class="form-control" name="id_negara" placeholder="ID negara" aria-label="id-negara" aria-describedby="id-negara-addon">
-														</div>
-														<label>Nama wilayah</label>
-														<div class="input-group mb-3">
-															<input type="text" class="form-control" name="nama_wilayah" placeholder="Nama wilayah" aria-label="nama-wilayah" aria-describedby="nama-wilayah-addon">
-														</div>
-														<label>ID Induk wilayah</label>
-														<div class="input-group mb-3">
-															<input type="text" class="form-control" name="id_induk_wilayah" placeholder="ID induk wilayah" aria-label="id-induk-wilayah" aria-describedby="id-induk-wilayah-addon">
+															<div class="form-check form-check-inline">
+																<input
+																	class="form-check-input"
+																	type="radio"
+																	name="untuk_kampus_merdeka"
+																	id="untuk_kampus_merdeka_tidak"
+																	value="n"
+																	checked>
+																<label class="form-check-label" for="untuk_kampus_merdeka_tidak">
+																	Tidak
+																</label>
+															</div>
+															<div class="form-check form-check-inline">
+																<input
+																	class="form-check-input"
+																	type="radio"
+																	name="untuk_kampus_merdeka"
+																	id="untuk_kampus_merdeka_ya"
+																	value="y">
+																<label class="form-check-label" for="untuk_kampus_merdeka_ya">
+																	Ya
+																</label>
+															</div>
 														</div>
 														<button type="submit" class="btn btn-primary btn-lg w-100 mt-4 mb-0">Simpan</button>
 													</form>
@@ -188,22 +189,22 @@
 <script>
 	function handleEdit(element) {
 		const row = JSON.parse(element.getAttribute('data-row'));
+		$('[name="id_jenis_aktivitas_mahasiswa"]').val(row.id_jenis_aktivitas_mahasiswa);
+		$('[name="nama_jenis_aktivitas_mahasiswa"]').val(row.nama_jenis_aktivitas_mahasiswa);
 
-		$('[name="id_level_wilayah"]').val(row.id_level_wilayah);
-		$('[name="id_wilayah"]').val(row.id_wilayah);
-		$('[name="id_negara"]').val(row.id_negara);
-		$('[name="nama_wilayah"]').val(row.nama_wilayah);
-		$('[name="id_induk_wilayah"]').val(row.id_induk_wilayah);
+		if (row.untuk_kampus_merdeka == 1) {
+			$('#untuk_kampus_merdeka_ya').prop('checked', true);
+		} else {
+			$('#untuk_kampus_merdeka_tidak').prop('checked', true);
+		}
 
 		$('#modalCreate').modal('show');
 	}
 
 	document.getElementById('btn-add').addEventListener('click', function() {
-		$('[name="id_level_wilayah"]').val('');
-		$('[name="id_wilayah"]').val('');
-		$('[name="id_negara"]').val('');
-		$('[name="nama_wilayah"]').val('');
-		$('[name="id_induk_wilayah"]').val('');
+		document.querySelector('[name="nama_jenis_aktivitas_mahasiswa"]').value = '';
+		document.querySelector('[name="untuk_kampus_merdeka"]').value = 'n';
+		document.querySelector('[name="id_jenis_aktivitas_mahasiswa"]').value = '';
 		$('#modalCreate').modal('show');
 	});
 </script>

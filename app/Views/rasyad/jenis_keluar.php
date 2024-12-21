@@ -45,10 +45,10 @@
 								<?= session('success') ?>
 							</div>
 						<?php endif; ?>
-						<?php if (! empty($errors)): ?>
+						<?php if (! empty(session('errors'))): ?>
 							<div class="alert alert-danger" role="alert">
 								<ul>
-									<?php foreach ($errors as $error): ?>
+									<?php foreach (session('errors') as $error): ?>
 										<li><?= esc($error) ?></li>
 									<?php endforeach ?>
 								</ul>
@@ -179,45 +179,6 @@
 		document.querySelector('[name="apa_mahasiswa"]').value = '';
 		document.querySelector('[name="id_jenis_keluar"]').value = '';
 		$('#modalCreate').modal('show');
-	});
-
-	document.addEventListener("DOMContentLoaded", function() {
-		const searchForm = document.getElementById("searchForm");
-		const searchInput = document.getElementById("searchInput");
-		const resultMessage = document.getElementById("resultMessage");
-		const tableBody = document.querySelector(".table tbody");
-
-		function filterRows() {
-			const searchText = searchInput.value.toLowerCase();
-			let foundRows = 0;
-
-			tableBody.querySelectorAll("tr").forEach(function(row, index) {
-				const cells = row.querySelectorAll("td");
-				const kategoriText = cells[1].textContent.toLowerCase(); // Ubah sesuai dengan indeks kolom yang berisi kategori
-
-				if (kategoriText.includes(searchText)) {
-					row.style.display = "";
-					foundRows++;
-				} else {
-					row.style.display = "none";
-				}
-			});
-
-			if (foundRows === 0) {
-				resultMessage.textContent = "Data tidak ditemukan";
-			} else {
-				resultMessage.textContent = "";
-			}
-		}
-
-		searchForm.addEventListener("submit", function(event) {
-			event.preventDefault();
-			filterRows();
-		});
-
-		searchInput.addEventListener("input", filterRows);
-
-		filterRows();
 	});
 </script>
 
