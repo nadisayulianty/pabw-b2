@@ -1,20 +1,3 @@
-
--- --------------------------------------------------------
-
---
--- Table structure for table `jenis_keluar`
---
-
-CREATE TABLE `jenis_keluar` (
-  `id_jenis_keluar` int(11) DEFAULT NULL,
-  `jenis_keluar` varchar(100) DEFAULT NULL,
-  `apa_mahasiswa` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `jenis_keluar`
---
-
 INSERT IGNORE INTO `jenis_keluar` (`id_jenis_keluar`, `jenis_keluar`, `apa_mahasiswa`) VALUES
 (5, 'Putus Studi', 1),
 (3, 'Dikeluarkan', 1),
